@@ -72,6 +72,7 @@
   
   .image-slider-dots {
     text-align: center;
+    padding-top:4px;
   }
   
   /* The dots/bullets/indicators */

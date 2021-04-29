@@ -5,10 +5,11 @@
 .footer {
   display: flex;
   flex-flow: row wrap;
-  padding: 20px 30px 10px 30px;
+  padding: 20px 0px 10px 0px;
   color: #2f2f2f;
   background-color: #fff;
   border-top: 1px solid #e5e5e5;
+  text-align: center;
 }
 
 .footer > * {
@@ -92,8 +93,7 @@
 .social-icons {
   padding-top:10px;
   display: flex;
-  justify-content: space-between;
-  max-width: 150px;
+  justify-content: space-evenly;
 }
 
 @media screen and (min-width: 24.375em) {

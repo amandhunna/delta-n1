@@ -6,7 +6,7 @@ import { Facebook, Instagram, Youtube } from 'react-bootstrap-icons';
 
 function FooterContainter() {
     return (
-        <div>
+        <div className="page-width">
             <footer className="footer">
                 <ul className="footer__nav">
                     <li className="nav__item">
