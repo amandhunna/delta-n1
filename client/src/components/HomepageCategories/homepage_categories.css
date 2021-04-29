@@ -1,0 +1,36 @@
+:root {
+  --cardWidth: 360px;
+  --cardHeight: 400px;
+  --cardMargin: 6em;
+}
+
+.main-section {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: #bbb;
+}
+.card {
+  width: var(--cardWidth);
+  height: var(--cardHeight);
+  margin-bottom: var(--cardMargin);
+  border: 1px solid #ccc;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.category-heading{
+  font-size: 2em;
+  padding-bottom: 1em;
+}
+
+.category-spacing{
+  padding-top:2em;
+}
+
+  
+@media screen and (min-width: 1200px) {
+  .main-section{
+    justify-content: space-between;
+  }
+}
