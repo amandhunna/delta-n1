@@ -8,11 +8,11 @@ function FooterContainter() {
     return (
         <div className="page-width">
             <footer className="footer">
-                <ul className="footer__nav">
-                    <li className="nav__item">
-                    <h2 className="nav__title">Media</h2>
+                <ul className="footer-nav">
+                    <li className="nav-item">
+                    <h2 className="nav-title">Media</h2>
 
-                    <ul className="nav__ul">
+                    <ul className="nav-ul">
                         <li>
                         <a href="#">Online</a>
                         </li>
@@ -27,10 +27,10 @@ function FooterContainter() {
                     </ul>
                     </li>
                     
-                    <li className="nav__item">
-                    <h2 className="nav__title">Media</h2>
+                    <li className="nav-item">
+                    <h2 className="nav-title">Media</h2>
 
-                    <ul className="nav__ul">
+                    <ul className="nav-ul">
                         <li>
                         <a href="#">Online</a>
                         </li>
@@ -45,10 +45,10 @@ function FooterContainter() {
                     </ul>
                     </li>
                     
-                    <li className="nav__item">
-                    <h2 className="nav__title">Legal</h2>
+                    <li className="nav-item">
+                    <h2 className="nav-title">Legal</h2>
                     
-                    <ul className="nav__ul">
+                    <ul className="nav-ul">
                         <li>
                         <a href="#">Privacy Policy</a>
                         </li>
@@ -63,8 +63,8 @@ function FooterContainter() {
                     </ul>
                     </li>
                 </ul>
-                <div className="footer__addr">
-                    <h1 className="footer__logo">Something</h1>
+                <div className="footer-addr">
+                    <h1 className="footer-logo">Something</h1>
                         
                     <h2>Contact</h2>
                     
@@ -80,7 +80,7 @@ function FooterContainter() {
                 <div className="legal">
                     <p>&copy; 2021 Something. All rights reserved.</p>
                     
-                    <div className="legal__links">
+                    <div className="legal-links">
                     <span>Made with <span className="heart">♥</span> by Vatsal, Ajinkya and Amanjot</span>
                     </div>
                 </div>

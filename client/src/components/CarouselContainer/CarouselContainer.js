@@ -35,7 +35,7 @@ function CarouselContainer(props) {
             <div className="image-slider-container">
                 {slides.map((item,index) => (
                     <div key={item.src + index} className={`image-slider-mySlides image-slider-fade ${index === slideIndex? 'image-slider-active': ''}`}>
-                        <img src={item.src} alt={item.alt} style={{width:"100%"}}/>
+                        <img className="image-slider-aspect-ratio" src={item.src} alt={item.alt} style={{width:"100%"}}/>
                         <div className="image-slider-text">{item.caption}</div>
                     </div>
                 ))}
