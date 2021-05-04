@@ -1,5 +1,7 @@
 import React from 'react';
-import CartList from 'CartList';
+import CartList from './CartList';
+import './cart.css';
+
 function Cart(props) {
     return (
             <>
