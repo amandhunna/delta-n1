@@ -1,0 +1,16 @@
+:root {
+  --white: #ffffff;
+  --aspect-ratio: 60%;
+  --base-text-color: rgb(92, 92, 92);
+}
+* {
+  color: var(--base-text-color);
+}
+
+button {
+  background: none;
+  border: none;
+}
+button:focus {
+  outline: none;
+}

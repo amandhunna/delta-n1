@@ -1,4 +1,7 @@
+import crypto from 'crypto';
+import React from 'react';
 const { REACT_APP_REACT_ENV } = process.env;
+const reactENV = REACT_APP_REACT_ENV.trim();
 
 /* defines api urls */
 
@@ -7,10 +10,10 @@ const localhost = "http://localhost:3000";
 const rootURL = {
   development: localhost,
   production: "",
-}[REACT_APP_REACT_ENV];
+}[reactENV];
 
 const encryption = {
-    development: {
+  development  : {
         algorithm: 'aes-256-ctr',
         secretKey: '123456789',
         iv:crypto.randomBytes(16),
@@ -20,7 +23,7 @@ const encryption = {
         secretKey: '123456789', /* should be from env */
         iv:crypto.randomBytes(16), /* should be from env */
     } 
-}[REACT_APP_REACT_ENV];
+}[reactENV];
 
 const helperURLs = {};
 
@@ -40,7 +43,7 @@ const config = {
   production: {
     ...common,
   },
-}[REACT_APP_REACT_ENV];
+}[reactENV];
 
 // freeze object
 const fObj = Object.freeze(config);

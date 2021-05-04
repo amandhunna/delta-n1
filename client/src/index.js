@@ -10,14 +10,19 @@ if(REACT_APP_TEST_COMPONENTS) {
     const TestComponent = component.default;
     ReactDOM.render(<React.StrictMode><TestComponent /></React.StrictMode>, document.getElementById('root'));
   })
-  .catch(() => {ReactDOM.render(<div>Something went wrong in Test components</div>, document.getElementById("root"));})
+  .catch((error) => {
+    console.error("Error in test component: ", error);
+    ReactDOM.render(<div>Something went wrong in Test components</div>, document.getElementById("root"));})
 } else {
   import('./App')
   .then(component =>{
     const App = component.default;
     ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, document.getElementById('root'));
   })
-  .catch(() => {ReactDOM.render(<div>Something went wrong in Main Application</div>, document.getElementById("root"));})
+  .catch((error) => {
+    console.error("Error in Main app: ", error);
+    ReactDOM.render(<div>Something went wrong in Main Application</div>, document.getElementById("root"));
+  })
 }
 
 
