@@ -1,6 +1,6 @@
 import CarouselContainer from './components/CarouselContainer';
 import FooterContainter from './components/Footer/FooterContainer';
-// import HomepageCategories from './components/HomepageCategories';
+import HomepageCategories from './components/HomepageCategories';
 import './App.css';
 
 function TestComponent() {
@@ -8,7 +8,7 @@ function TestComponent() {
   return (
     <div> 
 	    <CarouselContainer debug={true}/>
-	    {/* <HomepageCategories /> */}
+	    <HomepageCategories debug={true}/>
 	    <FooterContainter />
     </div>
   );
