@@ -9,6 +9,11 @@
   padding: 0.6rem;
 }
 
+.quantity-container > span {
+  margin: 0.4rem;
+  font-size: var(--secondary-text);
+}
+
 @media only screen and (min-width: 768px) {
   .quantity-item {
     display: flex;

@@ -25,7 +25,9 @@ function CartList(props) {
                     <span className="cart-item-name">{item.name}</span>
                     <span className="cart-item-price">{helper.getPrice(item.currency, item.price)}</span>
                 </div> 
-                <QuantityCounter quantity={item.quantity} setProductList={setProductList} index={index} />
+                <div className="quantity-container center">
+                    <QuantityCounter quantity={item.quantity} setProductList={setProductList} index={index} />
+                </div>
                 <button className="cart-remove" onClick={() => removeItem(index)}><span>Remove</span></button>
                 <div className='center cart-item-total'> {helper.getTotalPrice(item)}</div>
             </div>
