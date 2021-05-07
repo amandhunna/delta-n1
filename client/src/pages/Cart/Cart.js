@@ -28,10 +28,9 @@ function Cart(props) {
                 <div className="cart-item-2">
                  <h1 className="cart-heading">Cart</h1>
                     <CartList {...addonProps}/>
-             {/*   
                     <CartCheckout {...addonProps}/>
                     {/* Estimate shipping * /}
-                    {/* Recently Viewed * /} */}
+                    {/* Recently Viewed */} 
                 </div>
             </div>
             {/* Footer */}
