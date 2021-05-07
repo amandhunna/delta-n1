@@ -24,11 +24,16 @@ function Cart(props) {
     return (
             <>
             {/* header */}
-            <h1 className="cart-heading">Cart</h1>
-            <CartList {...addonProps}/>
-            <CartCheckout {...addonProps}/>
-            {/* Estimate shipping */}
-            {/* Recently Viewed */}
+            <div className="cart-container">
+                <div className="cart-item-2">
+                 <h1 className="cart-heading">Cart</h1>
+                    <CartList {...addonProps}/>
+             {/*   
+                    <CartCheckout {...addonProps}/>
+                    {/* Estimate shipping * /}
+                    {/* Recently Viewed * /} */}
+                </div>
+            </div>
             {/* Footer */}
             </>
     );

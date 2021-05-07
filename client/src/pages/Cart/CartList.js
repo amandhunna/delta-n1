@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import helper from './helper';
 
 
@@ -21,10 +21,12 @@ function Quantity(props) {
     };
 
     return (
-        <div className="quantity-container">
-            <button onClick={() => update('decrease')}>-</button>
-            <span>{quantity}</span>
-            <button onClick={() => update('increase')}>+</button>
+        <div className="quantity-container center">
+            <div className="quantity-item">
+                <button style={{ letterSpacing: '-0.1rem'}}onClick={() => update('decrease')}>--</button>
+                <span>{quantity}</span>
+                <button onClick={() => update('increase')}>+</button>
+            </div>
         </div>
     );
 };
@@ -52,6 +54,7 @@ function CartList(props) {
                 </div> 
                 <Quantity quantity={item.quantity} setProductList={setProductList} index={index} />
                 <button className="cart-remove" onClick={() => removeItem(index)}><span>Remove</span></button>
+                <div className='center cart-item-total'> {helper.getTotalPrice(item)}</div>
             </div>
         </>))}
             
