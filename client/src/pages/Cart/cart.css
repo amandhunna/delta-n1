@@ -241,16 +241,6 @@ h1.cart-heading {
   margin-top: 1rem;
 }
 
-.cart-checkout-button > button {
-  background: var(--btn-color1);
-  color: #fff;
-  width: 100%;
-  padding: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: var(--secondary-color);
-}
-
 @media only screen and (min-width: 768px) {
   .cart-checkout-container {
     margin-top: 1rem;
@@ -314,16 +304,6 @@ h1.cart-heading {
     margin-top: 1rem;
     grid-row: 2 / 3;
     grid-column: 2 / 3;
-  }
-
-  .cart-checkout-button > button {
-    background: #ff9999;
-    color: #fff;
-    width: 100%;
-    padding: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: var(--secondary-text);
   }
 }
 

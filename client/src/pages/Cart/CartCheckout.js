@@ -1,6 +1,6 @@
 import React from 'react';
 import helper from './helper';
-
+import Button from './../../components/Button';
 function CartCheckout(props) {
 
     const { productList } = props;
@@ -17,7 +17,7 @@ function CartCheckout(props) {
                 <p className='total-description'>Free Shipping and Products are Inclusive of Taxes</p>
             </div>
             <div className='cart-checkout-button'>
-                <button>Checkout</button>
+                <Button label="Checkout" onClick={() => {}}/>
             </div>
         </div>
     );
