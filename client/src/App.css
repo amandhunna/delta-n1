@@ -1,10 +1,13 @@
 :root {
   --white: #ffffff;
   --aspect-ratio: 60%;
-  --base-text-color: rgb(92, 92, 92);
+  --base-color: #5c5c5c;
+  --base-color-light: #5c5c5c3d;
+  --secondary: #939393;
 }
+
 * {
-  color: var(--base-text-color);
+  color: var(--base-color);
 }
 
 button {
