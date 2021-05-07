@@ -7,13 +7,14 @@
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
     "react": "^17.0.2",
+    "react-bootstrap-icons": "^1.4.0",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "testComponent": "set REACT_APP_TEST_COMPONENTS=true && npm run dev", 
+    "testComponent": "set REACT_APP_TEST_COMPONENTS=true && npm run dev",
     "dev": "set REACT_APP_REACT_ENV=development && npm run start",
     "build": "react-scripts build",
     "test": "react-scripts test",

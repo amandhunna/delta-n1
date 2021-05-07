@@ -28,10 +28,7 @@ button:focus {
   justify-content: center;
 }
 
-.normal-font {
-}
-
-@media only screen and (min-width: 768px) {
-  .normal-font {
-  }
+.page-width {
+  max-width: 90vw;
+  margin: auto;
 }
