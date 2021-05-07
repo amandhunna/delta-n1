@@ -1,5 +1,4 @@
 import crypto from 'crypto';
-import React from 'react';
 const { REACT_APP_REACT_ENV } = process.env;
 const reactENV = REACT_APP_REACT_ENV.trim();
 
