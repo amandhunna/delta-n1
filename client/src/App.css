@@ -1,4 +1,34 @@
-.page-width{
-    max-width: 90vw;
-    margin: auto;
+:root {
+  --primary-text: 0.8vw;
+  --primary-color: #5c5c5c;
+
+  --secondary-text: 0.7vw;
+  --secondary-color: #5c5c5c3d;
+
+  --btn-color: #939393;
+  --btn-color1: #ff9999;
+}
+
+* {
+  color: var(--primary-color);
+  font-family: Futura, sans-serif;
+}
+
+button {
+  background: none;
+  border: none;
+}
+button:focus {
+  outline: none;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-width {
+  max-width: 90vw;
+  margin: auto;
 }

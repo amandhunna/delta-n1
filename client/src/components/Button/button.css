@@ -1,0 +1,15 @@
+.button {
+  background: var(--btn-color1);
+  width: 100%;
+  padding: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: var(--secondary-color);
+}
+
+.button > span {
+  color: #fff;
+}
+
+@media only screen and (min-width: 768px) {
+}
