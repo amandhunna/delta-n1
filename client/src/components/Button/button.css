@@ -3,7 +3,7 @@
   width: 100%;
   padding: 1rem;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 2em;
   font-size: var(--secondary-color);
 }
 
