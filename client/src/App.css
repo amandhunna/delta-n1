@@ -5,8 +5,8 @@
   --secondary-text: 0.7vw;
   --secondary-color: #5c5c5c3d;
 
-  --btn-color: #939393;
-  --btn-color1: #ff9999;
+  --btn-color-primary: #939393;
+  --btn-color-secondary: #ff9999;
 }
 
 * {
