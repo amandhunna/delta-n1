@@ -218,7 +218,8 @@ h1.cart-heading {
 
 .cart-order-note > span {
   letter-spacing: 2px;
-  font-size: var(--secondary-color);
+  font-size: var(--primary-text);
+  color: var(--primary-color);
 }
 
 .cart-order-note > textarea {
