@@ -22,7 +22,7 @@ function QuantityCounter (props) {
     };
 
     return (
-        <div className="quantityCounter-container center">
+        <div className="quantityCounter-container">
             <div className="quantity-item">
                 <button style={{ letterSpacing: '-0.1rem'}}onClick={() => update('decrease')}>--</button>
                 <span>{quantity}</span>

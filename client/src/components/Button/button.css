@@ -1,7 +1,7 @@
 .button {
   background: var(--btn-color1);
   width: 100%;
-  padding: 1rem;
+  padding: 0.5rem 1.5rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: var(--secondary-color);
@@ -9,7 +9,7 @@
 
 .button > span {
   color: #fff;
-  font-size: var(--primary-text);
+  font-size: var(--secondary-text);
 }
 
 @media only screen and (min-width: 768px) {
