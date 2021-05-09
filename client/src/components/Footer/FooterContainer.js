@@ -14,15 +14,15 @@ function FooterContainter() {
 
                     <ul className="nav-ul">
                         <li>
-                        <a href="#">Online</a>
+                        <a href="#sample">Online</a>
                         </li>
 
                         <li>
-                        <a href="#">Print</a>
+                        <a href="#sample">Print</a>
                         </li>
                             
                         <li>
-                        <a href="#">Alternative Ads</a>
+                        <a href="#sample">Alternative Ads</a>
                         </li>
                     </ul>
                     </li>
@@ -32,15 +32,15 @@ function FooterContainter() {
 
                     <ul className="nav-ul">
                         <li>
-                        <a href="#">Online</a>
+                        <a href="#sample">Online</a>
                         </li>
 
                         <li>
-                        <a href="#">Print</a>
+                        <a href="#sample">Print</a>
                         </li>
                             
                         <li>
-                        <a href="#">Alternative Ads</a>
+                        <a href="#sample">Alternative Ads</a>
                         </li>
                     </ul>
                     </li>
@@ -50,15 +50,15 @@ function FooterContainter() {
                     
                     <ul className="nav-ul">
                         <li>
-                        <a href="#">Privacy Policy</a>
+                        <a href="#sample">Privacy Policy</a>
                         </li>
                         
                         <li>
-                        <a href="#">Terms of Use</a>
+                        <a href="#sample">Terms of Use</a>
                         </li>
                         
                         <li>
-                        <a href="#">Sitemap</a>
+                        <a href="#sample">Sitemap</a>
                         </li>
                     </ul>
                     </li>
