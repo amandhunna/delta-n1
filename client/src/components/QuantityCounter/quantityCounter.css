@@ -8,7 +8,7 @@
 .quantity-item > * {
   padding: 0.6rem;
   font-size: var(--primary-text);
-  color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 .quantity-container > span {

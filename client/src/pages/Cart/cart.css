@@ -25,7 +25,7 @@
 /* ---------PAGE HEADING ------------------------- */
 h1.cart-heading {
   display: flex;
-  font-size: 1.3rem;
+  font-size: 1.5vw;
   align-items: center;
   justify-content: center;
   margin-bottom: 25px;
@@ -75,7 +75,7 @@ h1.cart-heading {
   letter-spacing: 0.1rem;
   font-size: 0.5rem;
   position: relative;
-  color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 .cart-remove > span:after {
@@ -86,7 +86,7 @@ h1.cart-heading {
   bottom: -5px;
   border-width: 0 0 0.5px 0;
   border-style: solid;
-  border-color: var(--secondary-color);
+  border-color: var(--primary-color);
 }
 
 .cart-item {
@@ -126,6 +126,7 @@ h1.cart-heading {
 }
 .cart-item-price {
   font-size: var(--secondary-text);
+  color: var(--primary-color);
   letter-spacing: 0.1rem;
   line-height: normal;
   margin-bottom: 1rem;
@@ -145,6 +146,7 @@ h1.cart-heading {
     border-bottom: 1px solid var(--secondary-color);
     padding-bottom: 1rem;
     margin-bottom: 3rem;
+    font-size: var(--primary-text);
   }
   .cart-item-header > div {
     display: flex;
@@ -243,16 +245,16 @@ h1.cart-heading {
   flex-direction: column;
   align-items: flex-end;
   margin-top: 1rem;
+  font-size: var(--primary-text);
+  color: var(--secondary-color);
 }
 
 .cart-checkout-info > .total {
-  font-size: var(--primary-text);
   margin-bottom: 0.8rem;
 }
 
 .cart-checkout-info > .total-description {
   font-size: var(--secondary-text);
-  color: var(--secondary-color);
 }
 
 .cart-checkout-info > .total {
