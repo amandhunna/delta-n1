@@ -34,7 +34,10 @@ function CartList(props) {
                 <div className="quantity-container">
                     <QuantityCounter quantity={item.quantity} setProductList={setProductList} index={index} />
                 </div>
-                <button className="cart-remove" onClick={() => removeItem(index)}><span>Remove</span></button>
+                <div className="cart-remove-wishlist">
+                    <button className="cart-remove" onClick={() => removeItem(index)}><span>Remove</span></button>
+                    <button className="cart-wishlist" onClick={() =>{}}>Add to Wishlist</button>
+                </div>
                 <div className='center cart-item-total center'> {helper.getTotalPrice(item)}</div>
             </div>
         </>))}

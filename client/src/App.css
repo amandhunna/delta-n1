@@ -5,8 +5,10 @@
   --secondary-text: 1.7vw;
   --secondary-color: #5c5c5c3d;
 
-  --btn-color: #939393;
-  --btn-color1: #ff9999;
+  --btn-primary-color: #939393;
+  --btn-secondary-color: #ff9999;
+
+  --red: #ff0000;
 }
 
 * {
@@ -24,7 +26,7 @@ html {
 }
 /* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
-  background: #ff0000;
+  background: var(--red);
 }
 
 button {

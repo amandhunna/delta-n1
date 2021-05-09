@@ -1,7 +1,9 @@
 import React from 'react';
 import BaseHelper from './../../helper/BaseHelper'
+import constants from './../../constants/main';
 import './quantityCounter.css'
 
+const { MAX_ITEM_QUANTITY, MIN_ITEM_QUANTITY } = constants;
 const helper = new BaseHelper();
 
 function QuantityCounter (props) {
@@ -11,10 +13,10 @@ function QuantityCounter (props) {
         setProductList(prev => { 
             const tempData = helper.deepClone(prev);
             const itemQuantity = tempData[index].quantity;
-            if(type === 'increase' && itemQuantity < 10) {
+            if(type === 'increase' && itemQuantity < MAX_ITEM_QUANTITY) {
                 tempData[index].quantity++;  
             }
-            if(type === 'decrease' && itemQuantity > 1 ) {
+            if(type === 'decrease' && itemQuantity > MIN_ITEM_QUANTITY ) {
                 tempData[index].quantity--;  
             }
             return tempData;
