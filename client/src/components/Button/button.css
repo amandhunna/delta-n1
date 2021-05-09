@@ -9,6 +9,7 @@
 
 .button > span {
   color: #fff;
+  font-size: var(--primary-text);
 }
 
 @media only screen and (min-width: 768px) {

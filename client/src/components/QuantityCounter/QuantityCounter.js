@@ -10,10 +10,11 @@ function QuantityCounter (props) {
     function update (type) {
         setProductList(prev => { 
             const tempData = helper.deepClone(prev);
-            if(type === 'increase') {
+            const itemQuantity = tempData[index].quantity;
+            if(type === 'increase' && itemQuantity < 10) {
                 tempData[index].quantity++;  
             }
-            if(type === 'decrease') {
+            if(type === 'decrease' && itemQuantity > 1 ) {
                 tempData[index].quantity--;  
             }
             return tempData;
