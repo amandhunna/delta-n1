@@ -31,7 +31,7 @@ class BaseHelper {
 
     getPrice(currencyType, price) {
         const currencySymbol = {
-            'in': 'Rs.'
+            'in': '₹'
         }
         return `${currencySymbol[currencyType]} ${price}`;
     }

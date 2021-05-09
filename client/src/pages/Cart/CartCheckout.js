@@ -17,7 +17,9 @@ function CartCheckout(props) {
                 <p className='total-description'>Free Shipping and Products are Inclusive of Taxes</p>
             </div>
             <div className='cart-checkout-button'>
-                <Button label="Checkout" onClick={() => {}}/>
+                <div>
+                    <Button label="Checkout" onClick={() => {}}/>
+                </div>
             </div>
         </div>
     );

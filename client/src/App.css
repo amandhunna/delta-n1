@@ -1,8 +1,8 @@
 :root {
-  --primary-text: 0.8vw;
+  --primary-text: 1.8vw;
   --primary-color: #5c5c5c;
 
-  --secondary-text: 0.7vw;
+  --secondary-text: 1.7vw;
   --secondary-color: #5c5c5c3d;
 
   --btn-color: #939393;
@@ -31,4 +31,11 @@ button:focus {
 .page-width {
   max-width: 90vw;
   margin: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  :root {
+    --primary-text: 1.1vw;
+    --secondary-text: 0.9vw;
+  }
 }

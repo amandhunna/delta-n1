@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import CartList from './CartList';
 import CartCheckout from './CartCheckout';
+import Footer from './../../components/Footer';
 import './cart.css';
 
 const product = {
@@ -33,7 +34,7 @@ function Cart(props) {
                     {/* Recently Viewed */} 
                 </div>
             </div>
-            {/* Footer */}
+            <Footer />
             </>
     );
 }

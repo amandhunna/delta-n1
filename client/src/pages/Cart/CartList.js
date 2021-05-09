@@ -16,6 +16,12 @@ function CartList(props) {
 
     return (
         <div className="cart-list">
+            <div className="cart-item-header">
+              <div>Products</div>
+              <div></div>
+              <div>Quantity</div>
+              <div>Total</div>
+            </div>
         {productList.map((item,index) => (<>
             <div className="cart-item-container">
                 <span className="cart-item-img">

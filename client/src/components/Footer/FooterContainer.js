@@ -4,7 +4,7 @@ import { Facebook, Instagram, Youtube } from 'react-bootstrap-icons';
 
 
 
-function FooterContainter() {
+function FooterContainer() {
     return (
         <div className="page-width">
             <footer className="footer">
@@ -89,4 +89,4 @@ function FooterContainter() {
     );
 }
 
-export default FooterContainter;
+export default FooterContainer;
