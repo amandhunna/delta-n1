@@ -1,7 +1,7 @@
 // import CarouselContainer from './components/CarouselContainer';
 import FooterContainter from './components/Footer/FooterContainer';
 // import HomepageCategories from './components/HomepageCategories';
-import ProductPage from './pages/ProductPage';
+import CategoryPage from './pages/CategoryPage';
 import './App.css';
 
 function TestComponent() {
@@ -11,7 +11,7 @@ function TestComponent() {
 	    {/* <CarouselContainer debug={true}/>
 	    <HomepageCategories debug={true}/>
        */}
-      <ProductPage debug={true}/>
+      <CategoryPage debug={true}/>
       <FooterContainter />
     </div>
   );
