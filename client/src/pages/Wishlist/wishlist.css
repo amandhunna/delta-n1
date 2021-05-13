@@ -4,6 +4,19 @@
   padding: 1em;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   margin: 0.5em;
+  position: relative;
+}
+.wishlist-remove-item {
+  position: absolute;
+  z-index: 1;
+  top: 0.5em;
+  right: 1em;
+  color: var(--white);
+  background: var(--btn-secondary-color);
+  padding: 0.2em 0.3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .wishlist-item-img {
@@ -26,6 +39,7 @@
 
 .wishlist-quick-view > span {
   color: #fff;
+  margin-left: 0.4em;
 }
 
 .wishlist-thumbnails {

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { Search } from 'react-bootstrap-icons';
 import helper from './helper';
 import Button from './../../components/Button';
 import Footer from './../../components/Footer';
@@ -15,16 +16,22 @@ const item = {
 
 };
 
-const whishlist = Array(5).fill(item);
+const demoWishlist = Array(5).fill(item);
 
 function Wishlist(props) {
+    const [wishlist, setWishlist] = useState(demoWishlist)
+    
+
     return (
         <div className='wishlist-page'>
-            {whishlist.map(item => (<div className="wishlist-item-container">
+            {wishlist.map((item,index) => (
+            <div className="wishlist-item-container">
                 <div className="wishlist-item-1 wishlist-item-img">
                     <img src={item.src} className="wishlist-thumbnails" alt={item.alt}/>
-                    <button className="wishlist-quick-view">
-                    <i class="bi bi-search"></i> <span>Quick View</span></button>
+                    <button className="wishlist-quick-view center">
+                        <Search /> 
+                        <span>Quick View</span>
+                    </button>
                 </div>
                 <div className="wishlist-item-2">
                     <p className="wishlist-product-name">{item.name}</p>
@@ -33,6 +40,7 @@ function Wishlist(props) {
                         <Button onClick={() => {}} label='Add to Cart' />
                     </div>
                 </div>
+                <button className="wishlist-remove-item" onClick={() => helper.removeItemFromListState(index, wishlist, setWishlist)}>x</button>
             </div>))}
             <Footer />
         </div>
