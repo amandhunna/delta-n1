@@ -61,3 +61,19 @@
   align-items: center;
   justify-content: center;
 }
+@media only screen and (min-width: 768px) {
+  .wishlist-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 2em;
+  }
+
+  .wishlist-item-container {
+    flex-basis: 48%;
+    width: 45vw;
+  }
+
+  .wishlist-item-1 {
+  }
+}

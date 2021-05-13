@@ -1,6 +1,7 @@
 import React from 'react';
 import helper from './helper';
 import Button from './../../components/Button';
+import Footer from './../../components/Footer';
 import './wishlist.css';
 
 const item = {
@@ -33,6 +34,7 @@ function Wishlist(props) {
                     </div>
                 </div>
             </div>))}
+            <Footer />
         </div>
     );
 }
