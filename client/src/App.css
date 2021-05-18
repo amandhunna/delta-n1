@@ -3,3 +3,7 @@ img {
   width: 100%;
   vertical-align: middle;
 }
+.page-width {
+  max-width: 90vw;
+  margin: auto;
+}
