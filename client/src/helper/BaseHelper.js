@@ -1,7 +1,7 @@
 import mainConfig from './../config/main'
 import crypto from 'crypto';
 
-const { algorithm, secretKey, iv } = mainConfig.encryption;
+const { algorithm, secretKey, iv } = mainConfig;
 
 class BaseHelper {
     encrypt(text) {
@@ -19,9 +19,21 @@ class BaseHelper {
         return decrpyted.toString();
     };
 
+    deepClone(value /* non primitive value */) {
+        const cloneValue = JSON.parse(JSON.stringify(value));
+        return cloneValue;
+    }
+
     async hashPassword(password) {
         const hash =  crypto.createHash('sha1').update(password, "utf8").digest("hex");;
         return hash;
+    }
+
+    getPrice(currencyType, price) {
+        const currencySymbol = {
+            'in': '₹'
+        }
+        return `${currencySymbol[currencyType]} ${price}`;
     }
     
 }

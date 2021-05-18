@@ -3,7 +3,59 @@ img {
   width: 100%;
   vertical-align: middle;
 }
+:root {
+  --primary-text: 1.8vw;
+  --primary-color: #5c5c5c;
+
+  --secondary-text: 1.7vw;
+  --secondary-color: #5c5c5c3d;
+
+  --btn-primary-color: #939393;
+  --btn-secondary-color: #ff9999;
+
+  --red: #ff0000;
+}
+
+* {
+  color: var(--primary-color);
+  font-family: Futura, sans-serif;
+}
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: var(--red);
+}
+
+button {
+  background: none;
+  border: none;
+}
+button:focus {
+  outline: none;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .page-width {
   max-width: 90vw;
   margin: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  :root {
+    --primary-text: 1.1vw;
+    --secondary-text: 0.9vw;
+  }
 }
