@@ -1,14 +1,10 @@
 import React from 'react';
-import './footer.css';
 import { Facebook, Instagram, Youtube } from 'react-bootstrap-icons';
+import './footer.css';
 
 
 
-<<<<<<< HEAD
 function FooterContainer() {
-=======
-function FooterContainter() {
->>>>>>> fcf46004a5005596732a99e08bd275e58d1371c2
     return (
         <div className="page-width">
             <footer className="footer">
@@ -18,17 +14,6 @@ function FooterContainter() {
 
                     <ul className="nav-ul">
                         <li>
-<<<<<<< HEAD
-                        <a href="#sample">Online</a>
-                        </li>
-
-                        <li>
-                        <a href="#sample">Print</a>
-                        </li>
-                            
-                        <li>
-                        <a href="#sample">Alternative Ads</a>
-=======
                         <a href="#">Online</a>
                         </li>
 
@@ -38,7 +23,6 @@ function FooterContainter() {
                             
                         <li>
                         <a href="#">Alternative Ads</a>
->>>>>>> fcf46004a5005596732a99e08bd275e58d1371c2
                         </li>
                     </ul>
                     </li>
@@ -48,17 +32,6 @@ function FooterContainter() {
 
                     <ul className="nav-ul">
                         <li>
-<<<<<<< HEAD
-                        <a href="#sample">Online</a>
-                        </li>
-
-                        <li>
-                        <a href="#sample">Print</a>
-                        </li>
-                            
-                        <li>
-                        <a href="#sample">Alternative Ads</a>
-=======
                         <a href="#">Online</a>
                         </li>
 
@@ -68,7 +41,6 @@ function FooterContainter() {
                             
                         <li>
                         <a href="#">Alternative Ads</a>
->>>>>>> fcf46004a5005596732a99e08bd275e58d1371c2
                         </li>
                     </ul>
                     </li>
@@ -78,17 +50,6 @@ function FooterContainter() {
                     
                     <ul className="nav-ul">
                         <li>
-<<<<<<< HEAD
-                        <a href="#sample">Privacy Policy</a>
-                        </li>
-                        
-                        <li>
-                        <a href="#sample">Terms of Use</a>
-                        </li>
-                        
-                        <li>
-                        <a href="#sample">Sitemap</a>
-=======
                         <a href="#">Privacy Policy</a>
                         </li>
                         
@@ -98,7 +59,6 @@ function FooterContainter() {
                         
                         <li>
                         <a href="#">Sitemap</a>
->>>>>>> fcf46004a5005596732a99e08bd275e58d1371c2
                         </li>
                     </ul>
                     </li>
@@ -129,8 +89,4 @@ function FooterContainter() {
     );
 }
 
-<<<<<<< HEAD
 export default FooterContainer;
-=======
-export default FooterContainter;
->>>>>>> fcf46004a5005596732a99e08bd275e58d1371c2
