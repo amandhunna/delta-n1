@@ -33,7 +33,11 @@ function HomepageCategories(props) {
                             </div>
                             <div className="category-btn-position">
                                 <div className="category-btn-main">
+<<<<<<< HEAD
                                     <a href="#sample" className="category-btn">VIEW PRODUCTS</a>
+=======
+                                    <a href="" className="category-btn">VIEW PRODUCTS</a>
+>>>>>>> fcf46004a5005596732a99e08bd275e58d1371c2
                                 </div>
                             </div>
                         </div>

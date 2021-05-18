@@ -4,7 +4,11 @@ import { Facebook, Instagram, Youtube } from 'react-bootstrap-icons';
 
 
 
+<<<<<<< HEAD
 function FooterContainer() {
+=======
+function FooterContainter() {
+>>>>>>> fcf46004a5005596732a99e08bd275e58d1371c2
     return (
         <div className="page-width">
             <footer className="footer">
@@ -14,6 +18,7 @@ function FooterContainer() {
 
                     <ul className="nav-ul">
                         <li>
+<<<<<<< HEAD
                         <a href="#sample">Online</a>
                         </li>
 
@@ -23,6 +28,17 @@ function FooterContainer() {
                             
                         <li>
                         <a href="#sample">Alternative Ads</a>
+=======
+                        <a href="#">Online</a>
+                        </li>
+
+                        <li>
+                        <a href="#">Print</a>
+                        </li>
+                            
+                        <li>
+                        <a href="#">Alternative Ads</a>
+>>>>>>> fcf46004a5005596732a99e08bd275e58d1371c2
                         </li>
                     </ul>
                     </li>
@@ -32,6 +48,7 @@ function FooterContainer() {
 
                     <ul className="nav-ul">
                         <li>
+<<<<<<< HEAD
                         <a href="#sample">Online</a>
                         </li>
 
@@ -41,6 +58,17 @@ function FooterContainer() {
                             
                         <li>
                         <a href="#sample">Alternative Ads</a>
+=======
+                        <a href="#">Online</a>
+                        </li>
+
+                        <li>
+                        <a href="#">Print</a>
+                        </li>
+                            
+                        <li>
+                        <a href="#">Alternative Ads</a>
+>>>>>>> fcf46004a5005596732a99e08bd275e58d1371c2
                         </li>
                     </ul>
                     </li>
@@ -50,6 +78,7 @@ function FooterContainer() {
                     
                     <ul className="nav-ul">
                         <li>
+<<<<<<< HEAD
                         <a href="#sample">Privacy Policy</a>
                         </li>
                         
@@ -59,6 +88,17 @@ function FooterContainer() {
                         
                         <li>
                         <a href="#sample">Sitemap</a>
+=======
+                        <a href="#">Privacy Policy</a>
+                        </li>
+                        
+                        <li>
+                        <a href="#">Terms of Use</a>
+                        </li>
+                        
+                        <li>
+                        <a href="#">Sitemap</a>
+>>>>>>> fcf46004a5005596732a99e08bd275e58d1371c2
                         </li>
                     </ul>
                     </li>
@@ -89,4 +129,8 @@ function FooterContainer() {
     );
 }
 
+<<<<<<< HEAD
 export default FooterContainer;
+=======
+export default FooterContainter;
+>>>>>>> fcf46004a5005596732a99e08bd275e58d1371c2
