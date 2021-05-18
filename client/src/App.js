@@ -15,6 +15,7 @@ import Recover from "./components/User/RecoverPassword/Index";
 import AccountRegister from "./pages/AccountRegister";
 import AccountLogin from "./pages/AccountLogin";
 import Cart from './pages/Cart';
+import Wishlist from './pages/Wishlist';
 import Address from "./components/User/AccountInfo/UserAddresses/Index";
 import "./App.css";
 
@@ -70,6 +71,9 @@ function App() {
     <Switch>
       <Route path='/cart'>
         <Cart />
+      </Route>
+      <Route path='/wishlist'>
+        <Wishlist />
       </Route>
       <Route path='/contact'>
         <ContactUs />

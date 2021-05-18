@@ -35,6 +35,12 @@ class BaseHelper {
         }
         return `${currencySymbol[currencyType]} ${price}`;
     }
+
+    removeItemFromListState(index, list, setList) {
+        const tempData = this.deepClone(list);
+        tempData.splice(index,1);
+        setList(tempData);
+    }
     
 }
 

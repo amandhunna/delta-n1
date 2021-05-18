@@ -8,12 +8,6 @@ import helper from './helper';
 function CartList(props) {
     const { productList, setProductList } = props; 
 
-    function removeItem(index) {
-        const tempData = helper.deepClone(productList);
-        tempData.splice(index,1);
-        setProductList(tempData)
-    }
-
     return (
         <div className="cart-list">
             <div className="cart-item-header">
@@ -35,7 +29,7 @@ function CartList(props) {
                     <QuantityCounter quantity={item.quantity} setProductList={setProductList} index={index} />
                 </div>
                 <div className="cart-remove-wishlist">
-                    <button className="cart-remove" onClick={() => removeItem(index)}><span>Remove</span></button>
+                    <button className="cart-remove" onClick={() => helper.removeItemFromListState(index, productList, setProductList)}><span>Remove</span></button>
                     <button className="cart-wishlist" onClick={() =>{}}>Add to Wishlist</button>
                 </div>
                 <div className='center cart-item-total center'> {helper.getTotalPrice(item)}</div>
