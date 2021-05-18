@@ -14,13 +14,13 @@ import ContactUs from "./pages/ContactUs";
 import Recover from "./components/User/RecoverPassword/Index";
 import AccountRegister from "./pages/AccountRegister";
 import AccountLogin from "./pages/AccountLogin";
+import Cart from './pages/Cart';
 import Address from "./components/User/AccountInfo/UserAddresses/Index";
 import "./App.css";
 
 // const { REACT_APP_TEST_COMPONENTS, REACT_APP_REACT_ENV } = process.env;
 // MAIN APP {REACT_APP_REACT_ENV} {REACT_APP_TEST_COMPONENTS}
 function App() {
-  console.log("-----", useStateValue());
   const [{ user }, dispatch] = useStateValue() || [{}];
 
   // to keep track of user
@@ -68,6 +68,9 @@ function App() {
     </Responsive>
 
     <Switch>
+      <Route path='/cart'>
+        <Cart />
+      </Route>
       <Route path='/contact'>
         <ContactUs />
       </Route>
