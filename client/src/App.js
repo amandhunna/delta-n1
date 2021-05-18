@@ -16,6 +16,8 @@ import AccountRegister from "./pages/AccountRegister";
 import AccountLogin from "./pages/AccountLogin";
 import Cart from './pages/Cart';
 import Wishlist from './pages/Wishlist';
+import ProductPage from './pages/ProductPage';
+import CategoryPage from './pages/CategoryPage';
 import Address from "./components/User/AccountInfo/UserAddresses/Index";
 import "./App.css";
 
@@ -77,6 +79,12 @@ function App() {
       </Route>
       <Route path='/contact'>
         <ContactUs />
+      </Route>
+      <Route path='/productPage'>
+        <ProductPage />
+      </Route>
+      <Route path='/categoryPage'>
+        <CategoryPage />
       </Route>
       <Route path='/restorepassword'>
         <Recover />
