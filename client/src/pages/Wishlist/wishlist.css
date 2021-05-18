@@ -59,6 +59,9 @@
   padding: 0 1em;
   justify-content: space-between;
 }
+.wishlist-product-name {
+  padding-top: 1em;
+}
 .wishlist-item-price {
   color: var(--secondary-color);
   margin-bottom: 1em;
