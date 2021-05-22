@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import CartList from './CartList';
 import CartCheckout from './CartCheckout';
 import Footer from './../../components/Footer';
+import emptyCartImg from './emptyCart.svg';
 import './cart.css';
 
 const product = {
@@ -18,22 +19,31 @@ const product = {
 const list = Array(2).fill(product);
 function Cart(props) {
     const [productList, setProductList] = useState(list);
-
     const addonProps = { 
         productList, setProductList
     }
+
+    const emptyCart = !productList.length; 
+    
     return (
             <>
             {/* header */}
+            {emptyCart && <>
+                <div className='center cart-empty-list '>
+                <span>You have no item in the cart</span>
+                <img src={emptyCartImg} alt='empty list' className='cart-empty-img'/>
+                <a href='/' >Browse Products</a>
+            </div>
+            </>}
+            {!emptyCart && <>
             <div className="cart-container">
                 <div className="cart-item-2">
                  <h1 className="cart-heading">Cart</h1>
                     <CartList {...addonProps}/>
                     <CartCheckout {...addonProps}/>
-                    {/* Estimate shipping * /}
-                    {/* Recently Viewed */} 
                 </div>
             </div>
+            </>}
             <Footer />
             </>
     );

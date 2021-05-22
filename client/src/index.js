@@ -19,7 +19,8 @@ if (REACT_APP_TEST_COMPONENTS) {
         document.getElementById("root")
       );
     })
-    .catch(() => {
+    .catch((error) => {
+      console.error("error in test app: ", error);
       ReactDOM.render(
         <div>Something went wrong in Test components</div>,
         document.getElementById("root")
@@ -38,7 +39,8 @@ if (REACT_APP_TEST_COMPONENTS) {
         document.getElementById("root")
       );
     })
-    .catch(() => {
+    .catch((error) => {
+      console.log("error in main app: ", error)
       ReactDOM.render(
         <div>Something went wrong in Main Application</div>,
         document.getElementById("root")
