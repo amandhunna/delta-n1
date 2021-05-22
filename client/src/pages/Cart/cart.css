@@ -1,3 +1,15 @@
+.cart-empty-list {
+  width: 100%;
+  flex-direction: column;
+  margin: 4em 0;
+}
+.cart-empty-img {
+  height: 22vh;
+  margin: 4em 0;
+}
+.wishlist-empty-list > span {
+  margin-bottom: 3em;
+}
 /* -----CART CONTAINER START ------------------ */
 .cart-container {
   display: grid;

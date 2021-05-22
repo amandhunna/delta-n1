@@ -1,3 +1,16 @@
+.wishlist-empty-list {
+  width: 100%;
+  flex-direction: column;
+  margin: 1em 0;
+}
+img.wishlist-empty-img {
+  height: 20vh;
+  margin-bottom: 4em;
+}
+.wishlist-empty-list > span {
+  margin-bottom: 3em;
+}
+
 .wishlist-item-container {
   display: flex;
   justify-content: space-evenly;

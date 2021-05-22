@@ -28,59 +28,60 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   // email and password auth
-
   const signIn = (e) => {
     e.preventDefault();
+    try {
 
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        if (userCredential) {
-          dispatch({
-            type: "SET_USER",
-            user: userCredential,
-          });
-          history.push("/");
-        }
-      })
-      .catch((e) => alert(e.message));
+    const userCredential = auth.signInWithEmailAndPassword(email, password);
+    if (userCredential) {
+      dispatch({
+        type: "SET_USER",
+        user: userCredential,
+        });
+      history.push("/");
+      }
+    }
+    catch(error) {
+      console.error("error in the basic sign-in ::", error);
+      alert(error.message);
+    }
+    finally {
+      setEmail("");
+      setPassword("");
+      history.push("/");
+    }
 
-    setEmail("");
-    setPassword("");
 
-    history.push("/");
   };
 
   // facebook authentication
-
-  const facebookAuth = (e) => {
+  const facebookAuthentication = async (e) => {
     e.preventDefault();
-
-    auth
-      .signInWithPopup(facebookAuth)
-      .then((result) => {
-        console.log(result, " facebook user");
-      })
-      .catch((e) => alert(e));
-
-    history.push("/");
+    try {
+      const userCredential = await auth.signInWithPopup(facebookAuth)
+        console.log(" facebook user", userCredential);
+    }
+    catch(error) {
+      console.error("error in facebook signup:: ", error);
+      alert(error);
+    } finally {
+      history.push("/");
+    }
   };
 
   // googleAuthentication
-  const googleAuth = (e) => {
+  const googleAuthentication = async (e) => {
     e.preventDefault();
+    try {
+      const userCredential = await auth.signInWithPopup(provider);
+      dispatch({ type: "SET_USER", user: userCredential, })
+    } catch (error) {
+        console.error("error in google sign-in: ", error) 
+      alert(e.message) 
+    } finally {
+      history.push("/");
+    }
 
-    auth
-      .signInWithPopup(provider)
-      .then((result) =>
-        dispatch({
-          type: "SET_USER",
-          user: result,
-        })
-      )
-      .catch((e) => alert(e.message));
-
-    history.push("/");
   };
 
   return (
@@ -143,14 +144,14 @@ const Login = () => {
                   <span className='text'></span>
                 </LoginHint>
                 <LoginSocials>
-                  <SocialButtons onClick={facebookAuth}>
+                  <SocialButtons onClick={facebookAuthentication}>
                     <img
                       className='facebookLogo'
                       src='https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512'
                       alt='facebook'
                     />
                   </SocialButtons>
-                  <SocialButtons onClick={googleAuth}>
+                  <SocialButtons onClick={googleAuthentication}>
                     <img
                       className='googleLogo'
                       src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png'

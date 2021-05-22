@@ -19,6 +19,7 @@ import Wishlist from './pages/Wishlist';
 import ProductPage from './pages/ProductPage';
 import CategoryPage from './pages/CategoryPage';
 import Address from "./components/User/AccountInfo/UserAddresses/Index";
+import PageNotFound from './pages/404';
 import "./App.css";
 
 // const { REACT_APP_TEST_COMPONENTS, REACT_APP_REACT_ENV } = process.env;
@@ -71,37 +72,40 @@ function App() {
     </Responsive>
 
     <Switch>
-      <Route path='/cart'>
+      <Route exact path='/cart'>
         <Cart />
       </Route>
-      <Route path='/wishlist'>
+      <Route  exact path='/wishlist'>
         <Wishlist />
       </Route>
-      <Route path='/contact'>
+      <Route  exact path='/contact'>
         <ContactUs />
       </Route>
-      <Route path='/productPage'>
+      <Route  exact path='/productPage'>
         <ProductPage />
       </Route>
-      <Route path='/categoryPage'>
+      <Route  exact path='/categoryPage'>
         <CategoryPage />
       </Route>
-      <Route path='/restorepassword'>
+      <Route  exact path='/restorepassword'>
         <Recover />
       </Route>
-      <Route path='/register'>
+      <Route  exact path='/register'>
         <AccountRegister />
       </Route>
-      <Route path='/account/login'>
+      <Route  exact path='/account/login'>
         <AccountLogin />
       </Route>
-      <Route path='/account/addresses'>
+      <Route  exact path='/account/addresses'>
         <Address />
       </Route>
-      <Route path='/account'>
+      <Route  exact path='/account'>
         <AccountInfo />
       </Route>
-      <Route path='/'></Route>
+      <Route  exact path='/'></Route>
+      <Route  exact path='*'>
+          <PageNotFound />
+      </Route>
     </Switch>
   </Router>
   );

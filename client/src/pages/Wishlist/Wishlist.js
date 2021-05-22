@@ -3,6 +3,7 @@ import { Search } from 'react-bootstrap-icons';
 import helper from './helper';
 import Button from './../../components/Button';
 import Footer from './../../components/Footer';
+import emptyWishList from './emptyWishList.svg' 
 import './wishlist.css';
 
 const item = {
@@ -21,10 +22,18 @@ const demoWishlist = Array(5).fill(item);
 function Wishlist(props) {
     const [wishlist, setWishlist] = useState(demoWishlist)
     
+    const emptyWishlist = !wishlist.length;
 
     return (
         <div className='wishlist-page'>
-            {wishlist.map((item,index) => (
+            {emptyWishlist && <>
+                <div className='center wishlist-empty-list '>
+                    <span>You have no item in the wishlist</span>
+                    <img src={emptyWishList} alt='empty list' className='wishlist-empty-img'/>
+                    <a href='/' >Browse Products</a>
+                </div>
+            </>}
+            {!emptyWishlist && wishlist.map((item,index) => (
             <div className="wishlist-item-container">
                 <div className="wishlist-item-1 wishlist-item-img">
                     <img src={item.src} className="wishlist-thumbnails" alt={item.alt}/>
