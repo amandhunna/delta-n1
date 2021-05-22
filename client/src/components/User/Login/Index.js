@@ -50,8 +50,6 @@ const Login = () => {
       setPassword("");
       history.push("/");
     }
-
-
   };
 
   // facebook authentication

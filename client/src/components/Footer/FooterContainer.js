@@ -1,6 +1,6 @@
 import React from 'react';
-import './footer.css';
 import { Facebook, Instagram, Youtube } from 'react-bootstrap-icons';
+import './footer.css';
 
 
 
