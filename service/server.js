@@ -1,8 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+// fire Store
+const admin = require('firebase-admin');
+const  router = require('./router');
 
-const router = require('./router');
+const serviceAccount = require('./config/firebase.json');
 
 const port = process.env.PORT || 6000;
 
@@ -19,8 +22,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', router)
 
 
-app.listen(port);
+app.listen(port, () => {
+  admin.initializeApp({credential: admin.credential.cert(serviceAccount)});
+  const db = admin.firestore(); 
+  console.log("-------db------", db);
+  console.log('listening at port: ', `http://localhost:${port}/`);
+});
 
-console.log('listening at port', port);
 
 module.exports = app;
