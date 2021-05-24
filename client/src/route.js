@@ -9,11 +9,12 @@ import ProductPage from './pages/ProductPage';
 import CategoryPage from './pages/CategoryPage';
 import Address from "./components/User/AccountInfo/UserAddresses/Index";
 import PageNotFound from './pages/404';
+import Home from './pages/HomePage'
 
 const routeComponents = [
     {
       route:'/',
-      component: <div>No component</div>
+      component: Home
     },
     {
     route :'/cart',
@@ -28,7 +29,7 @@ const routeComponents = [
       component: ContactUs,
     },
     {
-      route:'/productPage/:productId',
+      route:'/product/:productId',
       component: ProductPage,
     },
     {

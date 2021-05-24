@@ -6,17 +6,12 @@ import CarouselContainer from '../../components/CarouselContainer';
 function ProductPage() {
     return (
             <>
-            {/* header */}
-
             <div>
-                <CarouselContainer debug={true}/>
+              <CarouselContainer />
             </div>
-
-
             <div>
-                <SubCategory debug={true}/>
+                <SubCategory/>
             </div>
-            {/* Footer */}
             </>
     );
 }

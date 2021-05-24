@@ -14,10 +14,10 @@ const productDefault = {
 
 
 function Product(props) {
-    const { match = {} } = props;
-    const { productId } = match.param || {};
-    const [productDetails, setProductDetails ] = useState({});
-    const [componentState, setComponentState] = useState('noData')
+    const { match = {} } = props.route || {};
+    const { productId } = match.params || {};
+    const [ productDetails, setProductDetails ] = useState({});
+    const [ componentState, setComponentState] = useState('noData')
     const [ slideIndex, setSlideIndex ] = useState(0);
     const [ quantity, setQuantity ] = useState(1);
     const [ addToWishlist, setaddToWishlist ] = useState(false);
@@ -55,16 +55,21 @@ function Product(props) {
         async function getProduct() {
             try {
                 setComponentState('loading')
-                const snapshot = await db.collection('Products').doc('Nfb7JL7bWQcz2gPEzFVk').get();
+                console.log("productId",productId)
+                const snapshot = await db.collection('Products').doc(productId).get();
                 if (snapshot.empty) {
-                    console.log('here inseode')
-                    console.log('No matching documents.');
                     setComponentState('noData')
                     return;
                 }
                 const index = 0;
                 const data = snapshot.data();
+                
                 console.log('here', data)
+                if (data == undefined) {
+                    setComponentState('noData')
+                    return;
+                }
+
                 const  product = {
                     images: data.images,
                     sizes: data.size,
@@ -73,7 +78,6 @@ function Product(props) {
                     description: data.description || '',
                     productId: snapshot.id
                 }
-                console.log("productsss", product)
                 setProductDetails(product);
                 setComponentState('fetched')
             } catch(error) {
@@ -81,8 +85,7 @@ function Product(props) {
                 setComponentState('error');
             }
         }
-
-        getProduct(); 
+      getProduct(); 
     }, [])
 
 
@@ -93,6 +96,10 @@ function Product(props) {
     
     if(componentState === 'noData') {
         return <div>No product Found</div>;
+    }
+    
+    if(componentState === 'error') {
+        return <div>Something went wrong.</div>;
     }
 
     console.log("pr", productDetails);
