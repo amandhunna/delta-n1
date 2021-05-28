@@ -57,6 +57,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const userCredential = await auth.signInWithPopup(facebookAuth)
+      console.log("-facebook login---",  userCredential)
         console.log(" facebook user", userCredential);
     }
     catch(error) {
@@ -71,7 +72,18 @@ const Login = () => {
   const googleAuthentication = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await auth.signInWithPopup(provider);
+      const raw  = await auth.signInWithPopup(provider);
+      const { user, credential } = raw
+      const userCredential = {
+        id: user.uid,
+        displayName: user.displayName,
+        email: user.email,
+        accessToken: credential.accessToken,
+        idToken: credential.idToken
+      };
+      for(let key in userCredential ) {
+        localStorage.setItem(key, userCredential[key]);
+      }
       dispatch({ type: "SET_USER", user: userCredential, })
     } catch (error) {
         console.error("error in google sign-in: ", error) 

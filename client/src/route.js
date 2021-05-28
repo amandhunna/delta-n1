@@ -17,6 +17,14 @@ const routeComponents = [
       component: Home
     },
     {
+      route:'/products',
+      component: CategoryPage ,
+    },
+    {
+      route:'/product/:productId',
+      component: ProductPage,
+    },
+    {
     route :'/cart',
     component :Cart,
     },
@@ -27,14 +35,6 @@ const routeComponents = [
     {
       route:'/contact',
       component: ContactUs,
-    },
-    {
-      route:'/product/:productId',
-      component: ProductPage,
-    },
-    {
-      route:'/categoryPage',
-      component: CategoryPage ,
     },
     {
       route:'/restorepassword',

@@ -1,17 +1,12 @@
 import React , { useState, useEffect } from 'react';
-import { HeartFill } from 'react-bootstrap-icons';
+import admin from 'firebase-admin';
+import { Heart, HeartFill } from 'react-bootstrap-icons';
 import { db } from './../../config/firebaseConfig';
 import './product.css';
 
-
-const productDefault = {
-    images:[],
-    sizes:[],
-    title:"",
-    price: '',
-    description: ""
+const currentUser = {
+    id: 'bfyyAae3HQYj8o4uXypD', //'j54EipobSWRnDqSfLMmcIpJ1Z3E2';  
 };
-
 
 function Product(props) {
     const { match = {} } = props.route || {};
@@ -19,9 +14,8 @@ function Product(props) {
     const [ productDetails, setProductDetails ] = useState({});
     const [ componentState, setComponentState] = useState('noData')
     const [ slideIndex, setSlideIndex ] = useState(0);
-    const [ quantity, setQuantity ] = useState(1);
-    const [ addToWishlist, setaddToWishlist ] = useState(false);
-    const [ selectedSize, setselectedSize ] = useState(false);
+    const [ isWishlist, setIsWishlist ] = useState(false);
+    const [ selectedSize, setSelectedSize ] = useState(false);
 
     
     function newSlide(newReqIndex) {
@@ -40,33 +34,43 @@ function Product(props) {
         setSlideIndex(index);
     }
 
-    function update (type) {
-        if(type === 'increase') {
-            setQuantity(quantity+1); 
-        }
-        if(type === 'decrease') {
-            if(quantity>1)
-                setQuantity(quantity-1);  
-        }
-    };
+     async function onClickWishlist(e) {
+        e.preventDefault();
+        try {
 
+            const newValue = !isWishlist;
+            console.warn("HARD CODED CURRENT USER ID");
+            const currentUserId = currentUser.id; //'j54EipobSWRnDqSfLMmcIpJ1Z3E2'; 
+            const wishlist = currentUser.wishlist; 
+            const newWishlist = [ ...[...[].concat(wishlist)], productId];
+
+            const addResponse = await db.collection('Users').doc(currentUserId).set({ wishlist: newWishlist}, { merge: true } );
+            console.log("---", addResponse);
+            setIsWishlist(newValue);
+        } catch (error) {
+            console.error("error in wishlist:: ", error);
+            setComponentState('error');
+        }
+    }
 
     useEffect(() => {
         async function getProduct() {
             try {
-                setComponentState('loading')
-                console.log("productId",productId)
+                if(!productId) {
+                    setComponentState('noData')
+                    return;
+                }
+                setComponentState('loading');
                 const snapshot = await db.collection('Products').doc(productId).get();
                 if (snapshot.empty) {
-                    setComponentState('noData')
+                    setComponentState('noData');
                     return;
                 }
                 const index = 0;
                 const data = snapshot.data();
                 
-                console.log('here', data)
                 if (data == undefined) {
-                    setComponentState('noData')
+                    setComponentState('noData');
                     return;
                 }
 
@@ -78,6 +82,7 @@ function Product(props) {
                     description: data.description || '',
                     productId: snapshot.id
                 }
+                ///console.log("product fetch:", data, product);
                 setProductDetails(product);
                 setComponentState('fetched')
             } catch(error) {
@@ -102,7 +107,6 @@ function Product(props) {
         return <div>Something went wrong.</div>;
     }
 
-    console.log("pr", productDetails);
     return (
         <div className="page-width">
             <div className="product-main">
@@ -129,11 +133,14 @@ function Product(props) {
 
                 <div className="product-description-main">
 
-                    <div className="product-title"> {productDetails.title} <HeartFill className={`product-wishlist-btn ${addToWishlist ? 'product-wishlistAdded':''}`} onClick={()=> setaddToWishlist(!addToWishlist)}></HeartFill></div>
+                    <div className="product-title"> <span>{productDetails.title}</span> 
+                        {!isWishlist && <Heart className={`product-wishlist-btn`} onClick={onClickWishlist}></Heart>}
+                        {isWishlist && <HeartFill className={`product-wishlist-btn`} onClick={onClickWishlist}></HeartFill>}
+                    </div>
 
                     <div className="product-size">
                             {productDetails.sizes.map((item,index) => (
-                                <div key={item + index} className={`product-size-child ${item === selectedSize? 'product-size-child-selected': ''}`} onClick={()=> setselectedSize(item) }>
+                                <div key={item + index} className={`product-size-child ${item === selectedSize? 'product-size-child-selected': ''}`} onClick={()=> setSelectedSize(item) }>
                                     {item}
                                 </div>
                             ))}
@@ -141,19 +148,10 @@ function Product(props) {
 
                     <div className="product-price">{'\u20B9'} {productDetails.price}</div>
 
-                    <div className="product-quantity-container">
-                        <button onClick={() => update('decrease')}>-</button>
-                        <span>{quantity}</span>
-                        <button onClick={() => update('increase')}>+</button>
-                    </div>
-
                     <div className="product-btn-container">
-                        <div className="product-addtocart-btn">
-                            <span>ADD TO CART</span>
-                        </div>
-                        <div className="product-buyitnow-btn">
-                            <span>BUY IT NOW</span>
-                        </div>
+                        <button className="product-addtocart-btn">ADD TO CART</button>
+                        <button className="product-buyitnow-btn">
+                            BUY IT NOW</button>
                     </div>    
 
                     <div className="product-description">

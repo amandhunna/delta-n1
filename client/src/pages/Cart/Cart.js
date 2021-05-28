@@ -6,27 +6,56 @@ import emptyCartImg from './emptyCart.svg';
 import { db } from './../../config/firebaseConfig'
 import './cart.css';
 
-
-const product = {
-    src: 'https://cdn.shopify.com/s/files/1/0082/5091/6915/products/1_804dccb4-1357-427e-95c5-60ba9325f8a8_250x.jpg?v=1617960591',
-    productDetail: "/url to product page ",
-    name: 'German Silver',
-    price: '20',
-    currency: 'in',
-    alt: 'alt',
-    quantity: 1,
-
+const currentUser = {
+    id: 'bfyyAae3HQYj8o4uXypD', //'j54EipobSWRnDqSfLMmcIpJ1Z3E2'; 
+    activeOrder: '3z6vyIIHE57gNzdOXEAQ'
 };
 
-const list = Array(2).fill(product);
+// const product = {
+//     src: 'https://cdn.shopify.com/s/files/1/0082/5091/6915/products/1_804dccb4-1357-427e-95c5-60ba9325f8a8_250x.jpg?v=1617960591',
+//     productDetail: "/url to product page ",
+//     name: 'German Silver',
+//     price: '20',
+//     currency: 'in',
+//     alt: 'alt',
+//     quantity: 1,
+// 
+// };
+
+ const list = Array(2).fill([]);
 function Cart() {
-    const [productList, setProductList] = useState(list);
+    const [productList, setProductList] = useState([]);
     const [ componentState, setComponentState] = useState('loading');
     const addonProps = { 
-        productList, setProductList
+        productList, setProductList,setComponentState
     }
 
     const emptyCart = !productList.length; 
+
+    useEffect(() => {
+        async function updateCart() {
+            if(componentState === 'update') {
+                try {
+                    const  productIds =  [];
+                    const productQuantity = [];
+                    productList.forEach((item) => {
+                        productIds.push(item.productDetail);
+                        productQuantity.push(item.quantity);
+                    });
+                    // console.log("---productList---", productIds, productQuantity);        
+                    console.warn("HARD CODED CURRENT USER ID");
+                    const activeOrder = currentUser.activeOrder;
+                    const updateResponse = await db.collection('Orders').doc(activeOrder).set({ productIds, productQuantity }, { merge: true } );
+                    console.log("updateResponse", updateResponse);
+                    setComponentState('updated');
+                } catch (error) {
+                    console.error("error in cart update:: ", error);
+                    setComponentState('error');
+                }
+            }
+        }
+        updateCart();
+    }, [productList]);
 
     useEffect(() =>{
         async function getCartList() {
@@ -35,34 +64,40 @@ function Cart() {
                 return;
             }
             try {
-                const cartListRaw = await db.collection('Orders').get();
+                const cartListRaw = await db.collection("Orders")
+                .where("status_userId", "==", "CART_j54EipobSWRnDqSfLMmcIpJ1Z3E2").get();
                 const cartList = [];
                 cartListRaw.forEach((doc) => {
                     // console.log("doc data", doc.data());
                     cartList.push(doc.data()); 
                 });
+                const { productIds, productQuantity } = cartList[0];
+                console.log("--cartListRaw----",cartList)
 
-                const cartProductListRaw = await db.collection('Products').get();
-                const cartProductList = [];
-                cartProductListRaw.forEach((doc) => {
-                     
-                    // console.log("product doc data", doc.data());
-                    const data = doc.data();
-                    const index = 0;
+                const cartProductListRaw = await Promise.all(productIds
+                    .map(item => db.collection('Products').doc(item).get()));
+
+
+                const productList = cartProductListRaw.map(item => item.data());
+                    const cartProductList = []
+                productList.forEach((data, index = 0) => {
+                    console.log("--data--", data)
                     const object = {
-                        src: data.images[index],
-                        productDetail: doc.id,
+                        src: data.images[0],
+                        productDetail: productIds[0],
                         inStock: data.inStock[0],
                         name: data.name,
-                        price:data.price[index],
+                        price:data.price[0],
                         currency: 'in',
                         alt: data.name,
-                        quantity: 1,
+                        quantity: productQuantity[index],
                     }
+                    // console.log("cardProduct", cartProductList);
+                    console.log("object", object);
                     cartProductList.push(object); 
-                    console.log("obkect", cartProductList, list);
+    
                 });
-
+                console.log("(=")
                 setProductList(cartProductList);
                 setComponentState('fetched')
             } catch (error) {

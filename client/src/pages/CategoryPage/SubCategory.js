@@ -11,9 +11,6 @@ const jeans_banner = 'jeans_banner';
 const ornaments_banner = 'ornaments_banner';
 const saree_banner = 'saree_banner';
 
-
-  // .collection("Products").where("isDeleted", "==", false)
-
 function SubCategory(props) {
     const subCategories = ["sarees","ornaments","jeans"  ];
     const [ slides, setSlides ] = useState(subCategories)//([]);
