@@ -16,7 +16,7 @@ function FooterContainer() {
                         </li>
 
                         <li>
-                        <a href="#sample">Print</a>
+                        <a href="/wishlist">Wishlist</a>
                         </li>
                     </ul>
                     </li>

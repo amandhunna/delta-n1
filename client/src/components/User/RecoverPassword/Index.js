@@ -65,7 +65,7 @@ const Recover = () => {
                     placeholder='Email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    autofocus
+                    autoFocus
                     required
                   />
                   <label className='floatingLabel'>Email</label>

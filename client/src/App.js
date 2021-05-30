@@ -15,17 +15,23 @@ import "./App.css";
 
 
 function App() {
-  const [{ user }, dispatch] = useStateValue() || [{}];
+  const [{ user, banner }, dispatch] = useStateValue() || [{}];
 
   // to keep track of user
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        // add user to data layer on loggin in
-
+        const userCredential = {
+          id: authUser.uid,
+          displayName: authUser.displayName,
+          email: authUser.email,
+          accessToken: authUser.accessToken || localStorage.getItem('accessToken'),
+          idToken: authUser.idToken  || localStorage.getItem('idToken'),
+          photoURL: authUser.photoURL
+        };
         dispatch({
           type: "SET_USER",
-          user: authUser,
+          user: userCredential,
         });
       } else {
         // remove user from data layer on logging out
@@ -37,8 +43,23 @@ function App() {
     });
   }, []);
 
-  // console.log(user, "user");
+
+  function onBannerCancel () {
+    dispatch({
+      type: "SET_BANNER",
+      banner: {show: false, message: null},
+    })
+  }
+
+  // console.log("user",user, banner);
   // console.log(user?.uid, "uid");
+
+
+  const loginBanner =   (<>          
+          <div>
+            <span>You need to <a className = 'loginWarning 'href='/account/login'>Login</a> to perform this action</span>
+          </div>
+          </>);
   
   return (
     <Router>
@@ -53,12 +74,12 @@ function App() {
         <Responsive displayIn={["Tablet"]}>
             <Header />
         </Responsive>
-        <div className="center banner">
-          <div>
-            <span>You need to <a className = 'loginWarning 'href='/account/login'>Login</a> to perform this action</span>
+        { banner.show && (<>
+          <div className="center banner">
+            {banner.message || loginBanner}
+            <button className="" onClick={onBannerCancel}>x</button>
           </div>
-          <button className="">x</button>
-        </div>
+         </>) }
         <Switch>
           {routeComponents.map(item => {
             const Component = item.component;

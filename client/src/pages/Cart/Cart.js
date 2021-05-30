@@ -112,11 +112,10 @@ function Cart() {
                         quantity: productQuantity[index],
                     }
                     // console.log("cardProduct", cartProductList);
-                    console.log("object", object);
+                    // console.log("object", object);
                     cartProductList.push(object); 
     
                 });
-                console.log("(=")
                 setProductList(cartProductList);
                 setComponentState('fetched')
             } catch (error) {

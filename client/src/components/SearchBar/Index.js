@@ -32,7 +32,7 @@ const SearchBar = ({ showSearch, toggle }) => {
               type='search'
               placeholder='Search...'
               className='input'
-              autofocus
+              autoFocus
               onSubmit={searchPage}
             />
           </SearchForm>

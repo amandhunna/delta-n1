@@ -1,8 +1,16 @@
 // inital state of the app.
+const userFields = [
+  'id',
+  'displayName',
+  'email',
+  'accessToken',
+  'idToken',
+];
 
 export const initialState = {
-  user: null,
+  user: userFields.reduce((acc, curr) => ({...acc, [curr]: localStorage.getItem(curr)}), {}),
   cart: null,
+  banner: { show: false, message: null }
 };
 
 // helper function : will eventually get the cart total.
@@ -19,6 +27,11 @@ const reducer = (state, action) => {
         ...state,
         user: action.user,
       };
+    case "SET_BANNER":
+      return { 
+        ...state,
+        banner:action.banner
+      }
   }
 };
 

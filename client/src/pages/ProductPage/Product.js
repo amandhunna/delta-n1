@@ -2,14 +2,16 @@ import React , { useState, useEffect } from 'react';
 import admin from 'firebase-admin';
 import { Heart, HeartFill } from 'react-bootstrap-icons';
 import { db } from './../../config/firebaseConfig';
+import { useStateValue } from './../../context/StateProvider';
 import './product.css';
 
-const currentUser = {
-    id: 'bfyyAae3HQYj8o4uXypD', //'j54EipobSWRnDqSfLMmcIpJ1Z3E2';  
-};
+// const currentUser = {
+//     id: 'bfyyAae3HQYj8o4uXypD', //'j54EipobSWRnDqSfLMmcIpJ1Z3E2';  
+// };
 
 function Product(props) {
     const { match = {} } = props.route || {};
+    const [{ user:currentUser }, dispatch] = useStateValue() || [{}];
     const { productId } = match.params || {};
     const [ productDetails, setProductDetails ] = useState({});
     const [ componentState, setComponentState] = useState('noData')
@@ -39,11 +41,20 @@ function Product(props) {
         try {
 
             const newValue = !isWishlist;
-            console.warn("HARD CODED CURRENT USER ID");
-            const currentUserId = currentUser.id; //'j54EipobSWRnDqSfLMmcIpJ1Z3E2'; 
-            const wishlist = currentUser.wishlist; 
-            const newWishlist = [ ...[...[].concat(wishlist)], productId];
-
+            // console.warn("HARD CODED CURRENT USER ID");
+            const currentUserId = currentUser?.id;
+            console.log(currentUser)
+        
+            if(!currentUserId) {
+                dispatch({
+                    type: "SET_BANNER",
+                    banner: {show: true, message: null},
+                  })
+                return;
+            }
+            const prevWishlist = currentUser.wishlist || []; 
+            const newWishlist = [ ...[...[].concat(prevWishlist)], productId];
+            console.log("00000000", currentUserId, newWishlist)
             const addResponse = await db.collection('Users').doc(currentUserId).set({ wishlist: newWishlist}, { merge: true } );
             console.log("---", addResponse);
             setIsWishlist(newValue);
