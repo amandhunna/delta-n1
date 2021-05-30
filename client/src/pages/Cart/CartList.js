@@ -3,8 +3,6 @@ import QuantityCounter from './../../components/QuantityCounter';
 import helper from './helper';
 
 
-
-
 function CartList(props) {
     const { productList, setProductList,setComponentState } = props; 
 

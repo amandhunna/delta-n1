@@ -8,13 +8,16 @@ import Wishlist from './pages/Wishlist';
 import ProductPage from './pages/ProductPage';
 import CategoryPage from './pages/CategoryPage';
 import Address from "./components/User/AccountInfo/UserAddresses/Index";
+import Disclaimer from './pages/Policies/Disclaim';
+import TermsAndConditions from './pages/Policies/TermsAndConditions';
+import PrivacyPolicy from './pages/Policies/PrivacyPolicy';
 import PageNotFound from './pages/404';
-import Home from './pages/HomePage'
+// import Home from './pages/HomePage'
 
 const routeComponents = [
     {
       route:'/',
-      component: Home
+      component: CategoryPage//Home
     },
     {
       route:'/products',
@@ -55,6 +58,18 @@ const routeComponents = [
     {
       route:'/account',
       component: AccountInfo,
+    },
+    {
+      route:'/disclaimer',
+      component: Disclaimer,
+    },
+    {
+      route:'/termsAndConditions',
+      component: TermsAndConditions,
+    },
+    {
+      route:'/privacyPolicy',
+      component: PrivacyPolicy,
     },
     {
     route:'*',

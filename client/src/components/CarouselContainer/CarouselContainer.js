@@ -68,7 +68,7 @@ function CarouselContainer() {
                 console.error("error in product show page:: ", error);
             }
         }
-      // getProduct();
+      getProduct();
     }, []);
     
     if(componentState === 'loading') {

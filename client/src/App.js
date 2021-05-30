@@ -8,6 +8,7 @@ import { useStateValue } from "./context/StateProvider";
 import HeaderLarge from "./components/Header/Large/Index";
 import Navbar from "./components/Navbar/Index";
 import Header from "./components/Header/Index";
+import Footer from './components/Footer';
 import routeComponents from './route'; 
 import "./App.css";
 
@@ -52,7 +53,12 @@ function App() {
         <Responsive displayIn={["Tablet"]}>
             <Header />
         </Responsive>
-
+        <div className="center banner">
+          <div>
+            <span>You need to <a className = 'loginWarning 'href='/account/login'>Login</a> to perform this action</span>
+          </div>
+          <button className="">x</button>
+        </div>
         <Switch>
           {routeComponents.map(item => {
             const Component = item.component;
@@ -61,6 +67,7 @@ function App() {
             })
           }
         </Switch>
+        <Footer />
     </Router>
   );
 }

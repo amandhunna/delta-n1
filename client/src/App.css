@@ -49,7 +49,15 @@ button:focus {
   align-items: center;
   justify-content: center;
 }
-
+.banner {
+  border-bottom: 1px solid var(--secondary-color);
+  padding: 2em;
+  justify-content: space-between;
+}
+.loginWarning {
+  margin-left: 1em;
+  font-weight: 600;
+}
 .page-width {
   max-width: 90vw;
   margin: auto;

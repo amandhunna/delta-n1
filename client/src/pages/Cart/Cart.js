@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import CartList from './CartList';
 import CartCheckout from './CartCheckout';
-import Footer from './../../components/Footer';
 import emptyCartImg from './emptyCart.svg';
 import { db } from './../../config/firebaseConfig'
 import './cart.css';
@@ -31,6 +30,26 @@ function Cart() {
     }
 
     const emptyCart = !productList.length; 
+
+
+/*     async function onClickWishlist(e) {
+        e.preventDefault();
+        try {
+
+            const newValue = !isWishlist;
+            console.warn("HARD CODED CURRENT USER ID");
+            const currentUserId = currentUser.id; //'j54EipobSWRnDqSfLMmcIpJ1Z3E2'; 
+            const wishlist = currentUser.wishlist; 
+            const newWishlist = [ ...[...[].concat(wishlist)], productId];
+
+            const addResponse = await db.collection('Users').doc(currentUserId).set({ wishlist: newWishlist}, { merge: true } );
+            console.log("---", addResponse);
+            setIsWishlist(newValue);
+        } catch (error) {
+            console.error("error in wishlist:: ", error);
+            setComponentState('error');
+        }
+    } */
 
     useEffect(() => {
         async function updateCart() {
@@ -136,7 +155,6 @@ function Cart() {
                 </div>
             </div>
             </>}
-            <Footer />
             </>
     );
 }
