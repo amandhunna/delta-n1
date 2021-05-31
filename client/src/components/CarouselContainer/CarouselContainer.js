@@ -4,7 +4,7 @@ import { db } from './../../config/firebaseConfig';
 
 import './carousel.css';
 
-const testSlides  =  { 
+/* const testSlides  =  { 
     src:[ 
         'https://cdn.shopify.com/s/files/1/0082/5091/6915/files/launched_now_18_1400x.jpg?v=1618036634',
         'https://cdn.shopify.com/s/files/1/0082/5091/6915/files/BeautyPlus_20200814010950628_save_1400x.jpg?v=1597360936',
@@ -13,7 +13,7 @@ const testSlides  =  {
     productId: "HBGIUBfdafa",
     name: "this is done ",
     alt: "no image",
-}
+} */
 
 function CarouselContainer() {
     const history = useHistory();

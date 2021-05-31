@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
+    "env-cmd": "^10.1.0",
     "firebase": "^8.6.1",
     "framer-motion": "^4.1.17",
     "react": "^17.0.2",
@@ -23,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "testComponent": "set REACT_APP_TEST_COMPONENTS=true && npm run dev",
-    "dev": "set REACT_APP_REACT_ENV=development && npm run start",
+    "dev": "env-cmd -f .env npm run start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

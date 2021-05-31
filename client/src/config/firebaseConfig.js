@@ -1,13 +1,15 @@
 import firebase from "firebase";
 
+const envRef = process.env;
+
 const firebaseConfig = {
-  apiKey: "AIzaSyCgtBjJ8GCVMILNMVQwJBmE428DhjJCjCM",
-  authDomain: "littletags-fa858.firebaseapp.com",
-  projectId: "littletags-fa858",
-  storageBucket: "littletags-fa858.appspot.com",
-  messagingSenderId: "770896593247",
-  appId: "1:770896593247:web:f6560192cd373c7ea5f6ea",
-  measurementId: "G-G6TN79B0L7",
+  apiKey: envRef.REACT_APP_FIREBASE_API_KEY,
+  authDomain: envRef.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: envRef.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: envRef.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: envRef.REACT_APP_FIREBASE_MESSAGE_SENDER_ID,
+  appId: envRef.REACT_APP_FIREBASE_APP_ID,
+  measurementId: envRef.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
