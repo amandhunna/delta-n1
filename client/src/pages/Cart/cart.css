@@ -143,9 +143,9 @@ h1.cart-heading {
   letter-spacing: 0.2rem;
   line-height: 1.2rem;
   width: 12vh;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  /* overflow: hidden; */
+  /* white-space: nowrap; */
+  /* text-overflow: ellipsis; */
 }
 .cart-item-price {
   font-size: var(--secondary-text);

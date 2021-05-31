@@ -51,15 +51,11 @@ function App() {
     })
   }
 
-  // console.log("user",user, banner);
-  // console.log(user?.uid, "uid");
-
-
   const loginBanner =   (<>          
-          <div>
-            <span>You need to <a className = 'loginWarning 'href='/account/login'>Login</a> to perform this action</span>
-          </div>
-          </>);
+      <div>
+        <span>SOME GLOBAL INFO</span>
+      </div>
+    </>);
   
   return (
     <Router>

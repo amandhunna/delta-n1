@@ -1,15 +1,12 @@
 import React , { useState, useEffect } from 'react';
-import admin from 'firebase-admin';
+import { useHistory } from 'react-router-dom';
 import { Heart, HeartFill } from 'react-bootstrap-icons';
 import { db } from './../../config/firebaseConfig';
 import { useStateValue } from './../../context/StateProvider';
 import './product.css';
 
-// const currentUser = {
-//     id: 'bfyyAae3HQYj8o4uXypD', //'j54EipobSWRnDqSfLMmcIpJ1Z3E2';  
-// };
-
 function Product(props) {
+    const history = useHistory();
     const { match = {} } = props.route || {};
     const [{ user:currentUser }, dispatch] = useStateValue() || [{}];
     const { productId } = match.params || {};
@@ -41,27 +38,65 @@ function Product(props) {
         try {
 
             const newValue = !isWishlist;
-            // console.warn("HARD CODED CURRENT USER ID");
             const currentUserId = currentUser?.id;
             console.log(currentUser)
         
             if(!currentUserId) {
-                dispatch({
-                    type: "SET_BANNER",
-                    banner: {show: true, message: null},
-                  })
+                setComponentState('noUser')
+                // dispatch({
+                //    type: "SET_BANNER",
+                //    banner: {show: true, message: null},
+                //  })
                 return;
             }
             const prevWishlist = currentUser.wishlist || []; 
             const newWishlist = [ ...[...[].concat(prevWishlist)], productId];
-            console.log("00000000", currentUserId, newWishlist)
-            const addResponse = await db.collection('Users').doc(currentUserId).set({ wishlist: newWishlist}, { merge: true } );
-            console.log("---", addResponse);
+            await db.collection('Users').doc(currentUserId).set({ wishlist: newWishlist}, { merge: true } );
             setIsWishlist(newValue);
         } catch (error) {
             console.error("error in wishlist:: ", error);
             setComponentState('error');
         }
+    }
+
+    function onBannerCancel() {
+        setComponentState('fetched')
+    }
+
+    async function addToCart() {
+        if(!currentUser?.id) {
+            setComponentState('noUser');
+            return;
+        }
+
+        const activeOrder = `CART_${currentUser.id}`;
+        const collection = await db.collection("Orders").where("status_userId", "==", activeOrder).get();
+        const cart = [];
+        collection.forEach((doc) => {
+           // console.log("doc data", doc.data());
+            cart.push({ data: doc.data(), id: doc.id}); 
+        });
+        // console.log("collection", cart);
+        if(cart.length) {
+            cart[0].data.productIds.push(productId);
+            cart[0].data.productQuantity.push(1);
+            cart[0].data.sizes.push(selectedSize);
+            // console.log("mew", cart)
+            const docId =  cart[0].id;
+            await db.collection('Orders').doc(docId).set({...cart[0].data}, { merge: true } );
+        } else {
+            const newData = {
+                productIds: [productId],
+                productQuantity: [1],
+                status: "CART",
+                status_userId: `CART_${currentUser.id}`,
+                userId: currentUser.id,
+                sizes: [selectedSize],
+            }
+            await db.collection('Orders').doc().set({...newData}, { merge: true } );
+            // console.log("===",newData )
+        }
+        history.push('/cart');
     }
 
     useEffect(() => {
@@ -93,9 +128,9 @@ function Product(props) {
                     description: data.description || '',
                     productId: snapshot.id
                 }
-                ///console.log("product fetch:", data, product);
                 setProductDetails(product);
                 setComponentState('fetched')
+                setSelectedSize(data.size[0])
             } catch(error) {
                 console.error("error in the get product:: ", error);
                 setComponentState('error');
@@ -104,22 +139,35 @@ function Product(props) {
       getProduct(); 
     }, [])
 
+    let banner = '';
 
     if(componentState === 'loading') {
-        return <div>Loading...</div>;
+        return <div className="center">Loading...</div>;
     }
 
     
     if(componentState === 'noData') {
-        return <div>No product Found</div>;
+        return <div className="center">No product Found</div>;
     }
     
     if(componentState === 'error') {
-        return <div>Something went wrong.</div>;
+        return <div className="center">Something went wrong.</div>;
+    }
+
+    if(componentState === 'noUser') {
+        banner = (<>
+            <div className="center banner">
+                <div>
+                  <span>You need to <a className = 'loginWarning 'href='/account/login'>Login</a> to perform this action</span>
+                </div>
+                <button className="" onClick={onBannerCancel}>x</button>
+          </div>
+        </>);
     }
 
     return (
         <div className="page-width">
+            {banner}
             <div className="product-main">
 
                 <div className="product-imageSlider-main">
@@ -160,9 +208,8 @@ function Product(props) {
                     <div className="product-price">{'\u20B9'} {productDetails.price}</div>
 
                     <div className="product-btn-container">
-                        <button className="product-addtocart-btn">ADD TO CART</button>
-                        <button className="product-buyitnow-btn">
-                            BUY IT NOW</button>
+                        <button className="product-addtocart-btn" onClick={()=> addToCart()}>ADD TO CART</button>
+                        {/* <button className="product-buyitnow-btn">BUY IT NOW</button> */}
                     </div>    
 
                     <div className="product-description">

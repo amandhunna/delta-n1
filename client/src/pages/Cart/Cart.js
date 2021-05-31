@@ -3,27 +3,13 @@ import CartList from './CartList';
 import CartCheckout from './CartCheckout';
 import emptyCartImg from './emptyCart.svg';
 import { db } from './../../config/firebaseConfig'
+import { useStateValue } from './../../context/StateProvider';
 import './cart.css';
 
-const currentUser = {
-    id: 'bfyyAae3HQYj8o4uXypD', //'j54EipobSWRnDqSfLMmcIpJ1Z3E2'; 
-    activeOrder: '3z6vyIIHE57gNzdOXEAQ'
-};
-
-// const product = {
-//     src: 'https://cdn.shopify.com/s/files/1/0082/5091/6915/products/1_804dccb4-1357-427e-95c5-60ba9325f8a8_250x.jpg?v=1617960591',
-//     productDetail: "/url to product page ",
-//     name: 'German Silver',
-//     price: '20',
-//     currency: 'in',
-//     alt: 'alt',
-//     quantity: 1,
-// 
-// };
-
- const list = Array(2).fill([]);
 function Cart() {
     const [productList, setProductList] = useState([]);
+    const [cartId, setCartId] = useState('');
+    const [{ user:currentUser }] = useStateValue() || [{}];
     const [ componentState, setComponentState] = useState('loading');
     const addonProps = { 
         productList, setProductList,setComponentState
@@ -60,12 +46,11 @@ function Cart() {
                     productList.forEach((item) => {
                         productIds.push(item.productDetail);
                         productQuantity.push(item.quantity);
-                    });
-                    // console.log("---productList---", productIds, productQuantity);        
-                    console.warn("HARD CODED CURRENT USER ID");
-                    const activeOrder = currentUser.activeOrder;
-                    const updateResponse = await db.collection('Orders').doc(activeOrder).set({ productIds, productQuantity }, { merge: true } );
-                    console.log("updateResponse", updateResponse);
+                    });    
+                    // console.warn("HARD CODED CURRENT USER ID");
+                    // const activeOrder = currentUser.activeOrder;
+                    // console.log(cartId);
+                    await db.collection('Orders').doc(cartId).set({ productIds, productQuantity }, { merge: true } );
                     setComponentState('updated');
                 } catch (error) {
                     console.error("error in cart update:: ", error);
@@ -83,15 +68,22 @@ function Cart() {
                 return;
             }
             try {
+                const activeOrder = `CART_${currentUser.id}`;
                 const cartListRaw = await db.collection("Orders")
-                .where("status_userId", "==", "CART_j54EipobSWRnDqSfLMmcIpJ1Z3E2").get();
+                .where("status_userId", "==", activeOrder).get();
+                console.log("activeOrder",activeOrder )
                 const cartList = [];
                 cartListRaw.forEach((doc) => {
                     // console.log("doc data", doc.data());
-                    cartList.push(doc.data()); 
+                    cartList.push(doc.data());
+                    setCartId(doc.id)
                 });
+
+                if(!cartList.length) {
+                    setComponentState('noData')
+                    return
+                }
                 const { productIds, productQuantity } = cartList[0];
-                console.log("--cartListRaw----",cartList)
 
                 const cartProductListRaw = await Promise.all(productIds
                     .map(item => db.collection('Products').doc(item).get()));
