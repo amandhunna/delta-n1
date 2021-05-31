@@ -3,10 +3,8 @@ import QuantityCounter from './../../components/QuantityCounter';
 import helper from './helper';
 
 
-
-
 function CartList(props) {
-    const { productList, setProductList } = props; 
+    const { productList, setProductList,setComponentState } = props; 
 
     return (
         <div className="cart-list">
@@ -26,11 +24,11 @@ function CartList(props) {
                     <span className="cart-item-price">{helper.getPrice(item.currency, item.price)}</span>
                 </div> 
                 <div className="quantity-container">
-                    <QuantityCounter quantity={item.quantity} setProductList={setProductList} index={index} />
+                    <QuantityCounter quantity={item.quantity} setProductList={setProductList} setComponentState={setComponentState} index={index} />
                 </div>
                 <div className="cart-remove-wishlist">
-                    <button className="cart-remove" onClick={() => helper.removeItemFromListState(index, productList, setProductList)}><span>Remove</span></button>
-                    <button className="cart-wishlist" onClick={() =>{}}>Add to Wishlist</button>
+                    <button className="cart-remove" onClick={() => helper.removeItemFromListState(index, productList, setProductList, setComponentState)}><span>Remove</span></button>
+                   {/*  <button className="cart-wishlist" onClick={() =>{}}>Add to Wishlist</button> */}
                 </div>
                 <div className='center cart-item-total center'> {helper.getTotalPrice(item)}</div>
             </div>

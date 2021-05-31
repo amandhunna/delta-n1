@@ -40,7 +40,7 @@ if (REACT_APP_TEST_COMPONENTS) {
       );
     })
     .catch((error) => {
-      console.log("error in main app: ", error)
+      console.error("error in main app: ", error)
       ReactDOM.render(
         <div>Something went wrong in Main Application</div>,
         document.getElementById("root")

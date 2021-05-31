@@ -25,6 +25,7 @@ const AccountInfo = () => {
 
   const logout = () => {
     auth.signOut();
+    localStorage.clear();
     history.push("/");
   };
   return (

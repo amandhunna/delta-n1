@@ -22,7 +22,6 @@ const HeaderLarge = () => {
   const node = useRef();
 
   const [{ user }, dispatch] = useStateValue();
-
   const [showSearch, setshowSearch] = useState(false);
 
   const toggle = () => {

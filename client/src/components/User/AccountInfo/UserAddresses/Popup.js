@@ -70,7 +70,7 @@ const Popup = ({ toggle }) => {
               className='formInput'
               placeholder='First name'
               onChange={(e) => setfirstName(e.target.value)}
-              autofocus
+              autoFocus
               required
             />
             <ItemLabel>First name</ItemLabel>

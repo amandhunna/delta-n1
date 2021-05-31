@@ -72,7 +72,7 @@ const Register = () => {
                   placeholder='Frist Name'
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  autofocus
+                  autoFocus
                   required
                 />
                 <label className='floatingLabel'>Email</label>
@@ -84,7 +84,7 @@ const Register = () => {
                   placeholder='Last Name'
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  autofocus
+                  autoFocus
                   required
                 />
                 <label className='floatingLabel'>Email</label>
@@ -96,7 +96,7 @@ const Register = () => {
                   placeholder='Email'
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  autofocus
+                  autoFocus
                   required
                 />
                 <label className='floatingLabel'>Email</label>

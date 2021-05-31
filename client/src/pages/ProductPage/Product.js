@@ -1,30 +1,20 @@
-import React , { useState } from 'react';
-import { HeartFill } from 'react-bootstrap-icons';
+import React , { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Heart, HeartFill } from 'react-bootstrap-icons';
+import { db } from './../../config/firebaseConfig';
+import { useStateValue } from './../../context/StateProvider';
 import './product.css';
 
-
-const productDetails = {
-    images:[
-        { src: 'https://cdn.shopify.com/s/files/1/0082/5091/6915/files/launched_now_18_1400x.jpg?v=1618036634',caption: 'Caption Text1', alt:'no Image'},
-        { src: 'https://cdn.shopify.com/s/files/1/0082/5091/6915/files/BeautyPlus_20200814010950628_save_1400x.jpg?v=1597360936',caption: 'Caption Text2', alt:'no Image'},
-        { src: 'https://cdn.shopify.com/s/files/1/0082/5091/6915/files/DSC05377_1400x.jpg?v=1597174470',caption: 'Caption Text3', alt:'no Image'}
-    ],
-    sizes:["S","M","L"],
-    title:"Handloom Cotton Resham with Woven Sequined Palla",
-    price:2000,
-    description: "Material: High-quality oxidized german silver metal Weight: 128.62 gms approx. Size: Adjustable Color: Oxidized silver .. Disclaimer: This product has been handcrafted and hence may have slight irregularities in its color or embellishments. These imperfections are not defect per se, but a testimony of human involvement in the process and is the reason that makes each piece unique Material: High-quality oxidized german silver metal Weight: 128.62 gms approx. Size: Adjustable Color: Oxidized silver .. Disclaimer: This product has been handcrafted and hence may have slight irregularities in its color or embellishments. These imperfections are not defect per se, but a testimony of human involvement in the process and is the reason that makes each piece unique Material: High-quality oxidized german silver metal Weight: 128.62 gms approx. Size: Adjustable Color: Oxidized silver .. Disclaimer: This product has been handcrafted and hence may have slight irregularities in its color or embellishments. These imperfections are not defect per se, but a testimony of human involvement in the process and is the reason that makes each piece unique     Material: High-quality oxidized german silver metal Weight: 128.62 gms approx. Size: Adjustable Color: Oxidized silver .. Disclaimer: This product has been handcrafted and hence may have slight irregularities in its color or embellishments. These imperfections are not defect per se, but a testimony of human involvement in the process and is the reason that makes each piece unique"
-};
-
-
 function Product(props) {
-
+    const history = useHistory();
+    const { match = {} } = props.route || {};
+    const [{ user:currentUser }, dispatch] = useStateValue() || [{}];
+    const { productId } = match.params || {};
+    const [ productDetails, setProductDetails ] = useState({});
+    const [ componentState, setComponentState] = useState('noData')
     const [ slideIndex, setSlideIndex ] = useState(0);
-
-    const [ quantity, setQuantity ] = useState(1);
-
-    const [ addToWishlist, setaddToWishlist ] = useState(false);
-
-    const [ selectedSize, setselectedSize ] = useState(false);
+    const [ isWishlist, setIsWishlist ] = useState(false);
+    const [ selectedSize, setSelectedSize ] = useState(false);
 
     
     function newSlide(newReqIndex) {
@@ -43,32 +33,155 @@ function Product(props) {
         setSlideIndex(index);
     }
 
-    function update (type) {
-        if(type === 'increase') {
-            setQuantity(quantity+1); 
+     async function onClickWishlist(e) {
+        e.preventDefault();
+        try {
+
+            const newValue = !isWishlist;
+            const currentUserId = currentUser?.id;
+            console.log(currentUser)
+        
+            if(!currentUserId) {
+                setComponentState('noUser')
+                // dispatch({
+                //    type: "SET_BANNER",
+                //    banner: {show: true, message: null},
+                //  })
+                return;
+            }
+            const prevWishlist = currentUser.wishlist || []; 
+            const newWishlist = [ ...[...[].concat(prevWishlist)], productId];
+            await db.collection('Users').doc(currentUserId).set({ wishlist: newWishlist}, { merge: true } );
+            setIsWishlist(newValue);
+        } catch (error) {
+            console.error("error in wishlist:: ", error);
+            setComponentState('error');
         }
-        if(type === 'decrease') {
-            if(quantity>1)
-                setQuantity(quantity-1);  
+    }
+
+    function onBannerCancel() {
+        setComponentState('fetched')
+    }
+
+    async function addToCart() {
+        if(!currentUser?.id) {
+            setComponentState('noUser');
+            return;
         }
-    };
+
+        const activeOrder = `CART_${currentUser.id}`;
+        const collection = await db.collection("Orders").where("status_userId", "==", activeOrder).get();
+        const cart = [];
+        collection.forEach((doc) => {
+           // console.log("doc data", doc.data());
+            cart.push({ data: doc.data(), id: doc.id}); 
+        });
+        // console.log("collection", cart);
+        if(cart.length) {
+            cart[0].data.productIds.push(productId);
+            cart[0].data.productQuantity.push(1);
+            cart[0].data.sizes.push(selectedSize);
+            // console.log("mew", cart)
+            const docId =  cart[0].id;
+            await db.collection('Orders').doc(docId).set({...cart[0].data}, { merge: true } );
+        } else {
+            const newData = {
+                productIds: [productId],
+                productQuantity: [1],
+                status: "CART",
+                status_userId: `CART_${currentUser.id}`,
+                userId: currentUser.id,
+                sizes: [selectedSize],
+            }
+            await db.collection('Orders').doc().set({...newData}, { merge: true } );
+            // console.log("===",newData )
+        }
+        history.push('/cart');
+    }
+
+    useEffect(() => {
+        async function getProduct() {
+            try {
+                if(!productId) {
+                    setComponentState('noData')
+                    return;
+                }
+                setComponentState('loading');
+                const snapshot = await db.collection('Products').doc(productId).get();
+                if (snapshot.empty) {
+                    setComponentState('noData');
+                    return;
+                }
+                const index = 0;
+                const data = snapshot.data();
+                
+                if (data == undefined) {
+                    setComponentState('noData');
+                    return;
+                }
+
+                const  product = {
+                    images: data.images,
+                    sizes: data.size,
+                    title: data.name,
+                    price: data.price[index],
+                    description: data.description || '',
+                    productId: snapshot.id
+                }
+                setProductDetails(product);
+                setComponentState('fetched')
+                setSelectedSize(data.size[0])
+            } catch(error) {
+                console.error("error in the get product:: ", error);
+                setComponentState('error');
+            }
+        }
+      getProduct(); 
+    }, [])
+
+    let banner = '';
+
+    if(componentState === 'loading') {
+        return <div className="center">Loading...</div>;
+    }
+
+    
+    if(componentState === 'noData') {
+        return <div className="center">No product Found</div>;
+    }
+    
+    if(componentState === 'error') {
+        return <div className="center">Something went wrong.</div>;
+    }
+
+    if(componentState === 'noUser') {
+        banner = (<>
+            <div className="center banner">
+                <div>
+                  <span>You need to <a className = 'loginWarning 'href='/account/login'>Login</a> to perform this action</span>
+                </div>
+                <button className="" onClick={onBannerCancel}>x</button>
+          </div>
+        </>);
+    }
 
     return (
         <div className="page-width">
+            {banner}
             <div className="product-main">
 
                 <div className="product-imageSlider-main">
                     <div className="product-slider">
                         <div className="product-slider-images-preview">
                             {productDetails.images.map((item, index) => (
-                                <img className={`product-slider-small-images ${index === slideIndex ? "product-slider-small-images-active" : ""}`}  src={item.src} alt={item.alt} key={"currentSlide"+ index} onClick={() => currentSlide(index)}/>
+                                <img className={`product-slider-small-images ${index === slideIndex ? "product-slider-small-images-active" : ""}`}  src={item} alt={productDetails.title} key={"currentSlide"+ index} onClick={() => currentSlide(index)}/>
                             ))}
                         </div>
 
                         <div className="product-slider-container">
                             {productDetails.images.map((item,index) => (
-                                <div key={item.src + index} className={`product-slider-mySlides product-slider-fade ${index === slideIndex? 'product-slider-active': ''}`}>
-                                    <img className="product-slider-aspect-ratio" src={item.src} alt={item.alt} style={{width:"100%"}}/>
+                                <div key={item + index} className={`product-slider-mySlides product-slider-fade ${index === slideIndex? 'product-slider-active': ''}`}>
+                                    <img className="product-slider-aspect-ratio" src={item} alt={productDetails.title} style={{width:"100%"}}/>
                                 </div>
                             ))}
                             <button className="product-slider-prev" onClick={() => newSlide(-1)}>&#10094;</button>
@@ -79,11 +192,14 @@ function Product(props) {
 
                 <div className="product-description-main">
 
-                    <div className="product-title"> {productDetails.title} <HeartFill className={`product-wishlist-btn ${addToWishlist ? 'product-wishlistAdded':''}`} onClick={()=> setaddToWishlist(!addToWishlist)}></HeartFill></div>
+                    <div className="product-title"> <span>{productDetails.title}</span> 
+                        {!isWishlist && <Heart className={`product-wishlist-btn`} onClick={onClickWishlist}></Heart>}
+                        {isWishlist && <HeartFill className={`product-wishlist-btn`} onClick={onClickWishlist}></HeartFill>}
+                    </div>
 
                     <div className="product-size">
                             {productDetails.sizes.map((item,index) => (
-                                <div key={item + index} className={`product-size-child ${item === selectedSize? 'product-size-child-selected': ''}`} onClick={()=> setselectedSize(item) }>
+                                <div key={item + index} className={`product-size-child ${item === selectedSize? 'product-size-child-selected': ''}`} onClick={()=> setSelectedSize(item) }>
                                     {item}
                                 </div>
                             ))}
@@ -91,19 +207,9 @@ function Product(props) {
 
                     <div className="product-price">{'\u20B9'} {productDetails.price}</div>
 
-                    <div className="product-quantity-container">
-                        <button onClick={() => update('decrease')}>-</button>
-                        <span>{quantity}</span>
-                        <button onClick={() => update('increase')}>+</button>
-                    </div>
-
                     <div className="product-btn-container">
-                        <div className="product-addtocart-btn">
-                            <span>ADD TO CART</span>
-                        </div>
-                        <div className="product-buyitnow-btn">
-                            <span>BUY IT NOW</span>
-                        </div>
+                        <button className="product-addtocart-btn" onClick={()=> addToCart()}>ADD TO CART</button>
+                        {/* <button className="product-buyitnow-btn">BUY IT NOW</button> */}
                     </div>    
 
                     <div className="product-description">

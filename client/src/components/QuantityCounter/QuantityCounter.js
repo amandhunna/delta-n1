@@ -7,7 +7,7 @@ const { MAX_ITEM_QUANTITY, MIN_ITEM_QUANTITY } = constants;
 const helper = new BaseHelper();
 
 function QuantityCounter (props) {
-    const { quantity, setProductList, index } = props;
+    const { quantity, setProductList, index, setComponentState } = props;
 
     function update (type) {
         setProductList(prev => { 
@@ -21,6 +21,7 @@ function QuantityCounter (props) {
             }
             return tempData;
         });
+        setComponentState('update');
     };
 
     return (
