@@ -10,7 +10,7 @@ import CategoryPage from './pages/CategoryPage';
 import Address from "./components/User/AccountInfo/UserAddresses/Index";
 import Disclaimer from './pages/Policies/Disclaim';
 import TermsAndConditions from './pages/Policies/TermsAndConditions';
-import PrivacyPolicy from './pages/Policies/PrivacyPolicy';
+import PrivacyPolicy from './pages/Policies/PrivacyPolicies';
 import PageNotFound from './pages/404';
 // import Home from './pages/HomePage'
 
