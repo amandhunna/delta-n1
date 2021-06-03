@@ -14,8 +14,35 @@ function Wishlist(props) {
     const history = useHistory();
     const [{ user:currentUser }, dispatch] = useStateValue() || [{}];
     const [ componentState, setComponentState] = useState('noData')
-    const [wishlist, setWishlist] = useState([])
+    const [ wishlist, setWishlist] = useState([])
     
+    async function removeItemFromListState(index, productId) {
+
+        const currentUserId = currentUser?.id;
+        if(!currentUserId) {
+            setComponentState('noUser');
+            return;
+        }
+        helper.removeItemFromListState(index, wishlist, setWishlist, setComponentState);
+       
+       // await db.collection('Users').doc(currentUserId).set({ wishlist: newWishlist}, { merge: true } );
+        // await db.collection('Users').doc(currentUserId).set({ wishlist: newWishlist}, { merge: true } );
+    }
+
+    
+    useEffect(() => {
+        async function updateWishlist() {
+            if(componentState === 'update') {
+                const currentUserId = currentUser?.id;
+                await db.collection('Users').doc(currentUserId).set({ wishlist: wishlist.map(item => item.productId)}, { merge: true } );
+                setComponentState(!!wishlist.length? 'updated': 'noData');
+            }
+        };
+        updateWishlist();
+    }, [componentState])
+
+
+
     useEffect(() => {
         async function getProduct() {
             try {
@@ -78,7 +105,19 @@ function Wishlist(props) {
       getProduct(); 
     }, []);
 
+
     let renderME = "Let me decide..."
+
+    
+    if(componentState === 'noUser') {
+        renderME = <div>No user found, please login</div>
+    }
+
+    if(componentState === 'update') {
+        renderME = <div>Updating the wishlist, please wait!</div>
+    }
+
+
 
     if(componentState === 'loading') {
         renderME = <div>Loading...</div>
@@ -94,7 +133,7 @@ function Wishlist(props) {
             </>;
     }
 
-    if(componentState === 'fetched') {
+    if(componentState === 'fetched' || componentState === 'updated') {
         renderME =  wishlist.map((item,index) => (
             <div className="wishlist-item-container">
                 <div className="wishlist-item-1 wishlist-item-img">
@@ -111,7 +150,7 @@ function Wishlist(props) {
                         <Button onClick={() => {}} label='Add to Cart' />
                     </div>
                 </div>
-                <button className="wishlist-remove-item" onClick={() => helper.removeItemFromListState(index, wishlist, setWishlist)}>x</button>
+                <button className="wishlist-remove-item" onClick={() => removeItemFromListState(index,item.productId)}>x</button>
             </div>))
     }
 

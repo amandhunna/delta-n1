@@ -36,20 +36,15 @@ function Product(props) {
      async function onClickWishlist(e) {
         e.preventDefault();
         try {
-
             const newValue = !isWishlist;
             const currentUserId = currentUser?.id;
-            console.log(currentUser)
-        
             if(!currentUserId) {
-                setComponentState('noUser')
-                // dispatch({
-                //    type: "SET_BANNER",
-                //    banner: {show: true, message: null},
-                //  })
+                setComponentState('noUser');
                 return;
             }
-            const prevWishlist = currentUser.wishlist || []; 
+            const wishlistRaw = await db.collection('Users').doc(currentUserId).get();
+            const { wishlist } = wishlistRaw.data();
+            const prevWishlist = wishlist || []; 
             const newWishlist = [ ...[...[].concat(prevWishlist)], productId];
             await db.collection('Users').doc(currentUserId).set({ wishlist: newWishlist}, { merge: true } );
             setIsWishlist(newValue);

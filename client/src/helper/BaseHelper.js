@@ -40,7 +40,7 @@ class BaseHelper {
         const tempData = this.deepClone(list);
         tempData.splice(index,1);
         setList(tempData);
-        setComponentState('update')
+        setComponentState && setComponentState('update');
     }
     
 }
