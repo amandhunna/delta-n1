@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Heart, HeartFill } from 'react-bootstrap-icons';
 import { db } from './../../config/firebaseConfig';
 import { useStateValue } from './../../context/StateProvider';
+import ProductDetailSkeleton from './../../components/Skeleton';
 import './product.css';
 
 function Product(props) {
@@ -137,7 +138,7 @@ function Product(props) {
     let banner = '';
 
     if(componentState === 'loading') {
-        return <div className="center">Loading...</div>;
+        return <ProductDetailSkeleton />
     }
 
     
