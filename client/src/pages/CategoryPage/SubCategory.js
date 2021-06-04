@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductContainer from '../../components/ProductContainer';
 import { db } from './../../config/firebaseConfig';
+import SkeletonLoader from './../../components/Skeleton';
 import './subCategory.css'
 
 const jeans_product = 'jeans_product';
@@ -62,15 +63,15 @@ function SubCategory(props) {
 
 
     if(componentState === "loading") {
-        return <div >Loading...</div>
+        return <SkeletonLoader />
     }
     
     if(componentState === "noData") {
-        return <div >No Data</div>
+        return <div className="center">No Data</div>
     }
     
     if(componentState === "error") {
-        return <div >Something went wrong.</div>
+        return <div className="center">Something went wrong.</div>
     }
 
     return (

@@ -4,38 +4,19 @@ import CartCheckout from './CartCheckout';
 import emptyCartImg from './emptyCart.svg';
 import { db } from './../../config/firebaseConfig'
 import { useStateValue } from './../../context/StateProvider';
+import noUser from './noUser.svg';
 import './cart.css';
 
 function Cart() {
     const [productList, setProductList] = useState([]);
     const [cartId, setCartId] = useState('');
     const [{ user:currentUser }] = useStateValue() || [{}];
-    const [ componentState, setComponentState] = useState('loading');
+    const [ componentState, setComponentState] = useState('noUser');
     const addonProps = { 
         productList, setProductList,setComponentState
     }
 
-    const emptyCart = !productList.length; 
-
-
-/*     async function onClickWishlist(e) {
-        e.preventDefault();
-        try {
-
-            const newValue = !isWishlist;
-            console.warn("HARD CODED CURRENT USER ID");
-            const currentUserId = currentUser.id; //'j54EipobSWRnDqSfLMmcIpJ1Z3E2'; 
-            const wishlist = currentUser.wishlist; 
-            const newWishlist = [ ...[...[].concat(wishlist)], productId];
-
-            const addResponse = await db.collection('Users').doc(currentUserId).set({ wishlist: newWishlist}, { merge: true } );
-            console.log("---", addResponse);
-            setIsWishlist(newValue);
-        } catch (error) {
-            console.error("error in wishlist:: ", error);
-            setComponentState('error');
-        }
-    } */
+    const emptyCart = !productList.length;
 
     useEffect(() => {
         async function updateCart() {
@@ -47,9 +28,7 @@ function Cart() {
                         productIds.push(item.productDetail);
                         productQuantity.push(item.quantity);
                     });    
-                    // console.warn("HARD CODED CURRENT USER ID");
-                    // const activeOrder = currentUser.activeOrder;
-                    // console.log(cartId);
+
                     await db.collection('Orders').doc(cartId).set({ productIds, productQuantity }, { merge: true } );
                     setComponentState('updated');
                 } catch (error) {
@@ -65,16 +44,24 @@ function Cart() {
         async function getCartList() {
             if(!db) {
                 console.log('db not found', db)
+                setComponentState('error')
                 return;
             }
+
+            
             try {
-                const activeOrder = `CART_${currentUser.id}`;
+                const currentUserId =currentUser?.id;
+                if(!currentUserId) {
+                    setComponentState('noUser');
+                    return;
+                }
+
+                const activeOrder = `CART_${currentUserId}`;
                 const cartListRaw = await db.collection("Orders")
                 .where("status_userId", "==", activeOrder).get();
                 console.log("activeOrder",activeOrder )
                 const cartList = [];
                 cartListRaw.forEach((doc) => {
-                    // console.log("doc data", doc.data());
                     cartList.push(doc.data());
                     setCartId(doc.id)
                 });
@@ -126,6 +113,16 @@ function Cart() {
     if(componentState === 'error') {
         return <div>Something went wrong.</div>
     }
+
+    if(componentState === 'noUser') {
+        return <>
+            <div className='center wishlist-empty-list '>
+                <span>Please login to view your Cart</span>
+                <img src={noUser} alt='empty list' className='wishlist-empty-img'/>
+            </div>
+        
+        </>
+    }
     
     return (
             <>
@@ -151,3 +148,23 @@ function Cart() {
 }
 
 export default Cart;
+
+
+/*     async function onClickWishlist(e) {
+        e.preventDefault();
+        try {
+
+            const newValue = !isWishlist;
+            console.warn("HARD CODED CURRENT USER ID");
+            const currentUserId = currentUser.id; //'j54EipobSWRnDqSfLMmcIpJ1Z3E2'; 
+            const wishlist = currentUser.wishlist; 
+            const newWishlist = [ ...[...[].concat(wishlist)], productId];
+
+            const addResponse = await db.collection('Users').doc(currentUserId).set({ wishlist: newWishlist}, { merge: true } );
+            console.log("---", addResponse);
+            setIsWishlist(newValue);
+        } catch (error) {
+            console.error("error in wishlist:: ", error);
+            setComponentState('error');
+        }
+    } */

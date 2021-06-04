@@ -5,7 +5,9 @@ import helper from './helper';
 import Button from './../../components/Button';
 import { useStateValue } from './../../context/StateProvider';
 import { db } from './../../config/firebaseConfig';
+import SkeletonLoader from './../../components/Skeleton';
 import emptyWishList from './emptyWishList.svg' 
+import noUser from './noUser.svg';
 import './wishlist.css';
 
 // src: 'https://cdn.shopify.com/s/files/1/0082/5091/6915/products/1_804dccb4-1357-427e-95c5-60ba9325f8a8_250x.jpg?v=1617960591',
@@ -110,17 +112,22 @@ function Wishlist(props) {
 
     
     if(componentState === 'noUser') {
-        renderME = <div>No user found, please login</div>
+        renderME =   <>
+            <div className='center wishlist-empty-list '>
+                <span>Please login to view your wishlist</span>
+                <img src={noUser} alt='empty list' className='wishlist-empty-img'/>
+            </div>
+            </>;
     }
 
     if(componentState === 'update') {
-        renderME = <div>Updating the wishlist, please wait!</div>
+        renderME = <div className="center">Updating the wishlist, please wait!</div>
     }
 
 
 
     if(componentState === 'loading') {
-        renderME = <div>Loading...</div>
+        renderME = <SkeletonLoader />
     }
 
     if(componentState === 'noData') {

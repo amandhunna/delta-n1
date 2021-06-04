@@ -78,7 +78,13 @@ function FooterContainer() {
                     <p>&copy; 2021 Something. All rights reserved.</p>
                     
                     <div className="legal-links">
-                    <span>Made with <span className="heart">♥</span> by Vatsal, Ajinkya and Amanjot</span>
+                    <span>Made with 
+                        <span className="heart">&nbsp;♥&nbsp;</span> 
+                       by&nbsp;
+                        <a className='devInfo' target="_blank" href="https://github.com/ajinkyabodade" >Vatsal</a>, &nbsp;
+                        <a className='devInfo' target="_blank" href="https://github.com/Vatsal272120" >Ajinkya </a>&nbsp;and &nbsp;
+                        <a className='devInfo' target="_blank" href="https://github.com/amandhunna" >Amanjot Singh</a>
+                    </span>
                     </div>
                 </div>
             </footer>

@@ -1,19 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import SkeletonLoader from './../../components/Skeleton'
 import { db } from './../../config/firebaseConfig';
 
 import './carousel.css';
-
-/* const testSlides  =  { 
-    src:[ 
-        'https://cdn.shopify.com/s/files/1/0082/5091/6915/files/launched_now_18_1400x.jpg?v=1618036634',
-        'https://cdn.shopify.com/s/files/1/0082/5091/6915/files/BeautyPlus_20200814010950628_save_1400x.jpg?v=1597360936',
-        'https://cdn.shopify.com/s/files/1/0082/5091/6915/files/DSC05377_1400x.jpg?v=1597174470',
-    ],
-    productId: "HBGIUBfdafa",
-    name: "this is done ",
-    alt: "no image",
-} */
 
 function CarouselContainer() {
     const history = useHistory();
@@ -72,15 +62,15 @@ function CarouselContainer() {
     }, []);
     
     if(componentState === 'loading') {
-        return <div>Loading...</div>
+        return <SkeletonLoader />
     }
 
     if(componentState === 'error') {
-        return <div>Something went wrong...</div>
+        return <div className='center'>Something went wrong...</div>
     }
 
     if(componentState === 'noData') {
-        return <div>No data</div>
+        return <div className='center'>No Banner data</div>
     }
 
     return (
@@ -112,3 +102,15 @@ function CarouselContainer() {
 }
 
 export default CarouselContainer;
+
+
+/* const testSlides  =  { 
+    src:[ 
+        'https://cdn.shopify.com/s/files/1/0082/5091/6915/files/launched_now_18_1400x.jpg?v=1618036634',
+        'https://cdn.shopify.com/s/files/1/0082/5091/6915/files/BeautyPlus_20200814010950628_save_1400x.jpg?v=1597360936',
+        'https://cdn.shopify.com/s/files/1/0082/5091/6915/files/DSC05377_1400x.jpg?v=1597174470',
+    ],
+    productId: "HBGIUBfdafa",
+    name: "this is done ",
+    alt: "no image",
+} */
