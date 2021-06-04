@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
+import MenuIcon from "@material-ui/icons/Menu";
 
 import {
-  HeaderWrapper,
-  HeaderTop,
-  HeaderBottom,
-  HeaderLeft,
-  HeaderRight,
+  Header,
+  Header__Wrapper,
+  Header__left,
+  Header__Mid,
+  Header__Right,
   User,
   Search,
   Cart,
 } from "./Styles";
-import { motion } from "framer-motion";
 
 import { Link, useHistory } from "react-router-dom";
 
@@ -18,55 +18,63 @@ import { useStateValue } from "./../../../context/StateProvider";
 
 import SearchBar from "./../../SearchBar/Index";
 
-const HeaderLarge = () => {
-  const node = useRef();
+import PersonIcon from "@material-ui/icons/Person";
+import SearchIcon from "@material-ui/icons/Search";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
+const HeaderLarge = () => {
   const [{ user }, dispatch] = useStateValue();
+
+  const history = useHistory();
 
   const [showSearch, setshowSearch] = useState(false);
 
   const toggle = () => {
+    console.log("search");
     setshowSearch(!showSearch);
+  };
+
+  const loginPage = () => {
+    if (user) {
+      history.push("/account");
+    } else {
+      history.push("/login");
+    }
   };
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0, background_color: "red" }}
-        transition={{ duration: 2 }}>
-        <HeaderWrapper>
-          <HeaderTop>
-            <HeaderLeft>
-              <h1 className='header__Logo'>
-                {" "}
-                <Link to='/'>
-                  <img
-                    className='header__Logo__Image'
-                    src='https://cdn.shopify.com/s/files/1/0082/5091/6915/files/amrapali_logo_transpaper_bg_120x.png?v=1564667363'
-                    alt=''
-                  />
-                </Link>
-              </h1>
-            </HeaderLeft>
-            <HeaderRight>
-              <Link to={!user ? "/account/login" : "/account"}>
-                <User style={{ color: "black" }} />
-              </Link>
-              <Link>
-                <Search onClick={toggle} style={{ color: "black" }} />
-              </Link>
-
-              <Link to='/cart'>
-                <Cart style={{ color: "black" }} />
-              </Link>
-            </HeaderRight>
-          </HeaderTop>
-          <HeaderBottom></HeaderBottom>
-        </HeaderWrapper>
-        {showSearch ? <SearchBar toggle={toggle} /> : null}{" "}
-      </motion.div>
+      <Header>
+        <Header__Wrapper>
+          <Header__left></Header__left>
+          <Header__Mid>
+            <h1 className='header__logo'>
+              <img
+                src='https://cdn.shopify.com/s/files/1/0082/5091/6915/files/amrapali_logo_transpaper_bg_120x.png?v=1564667363'
+                alt=''
+                className='header__logo__image'
+                onClick={() => history.push("/")}
+              />
+            </h1>
+          </Header__Mid>
+          <Header__Right>
+            {" "}
+            <button className='btn' onClick={loginPage}>
+              {" "}
+              <User style={{ color: "black" }} />{" "}
+            </button>
+            <button className='btn' onClick={() => setshowSearch(!showSearch)}>
+              {" "}
+              <Search style={{ color: "black" }} />{" "}
+            </button>
+            <button onClick={() => history.push("/cart")} className='btn'>
+              {" "}
+              <Cart style={{ color: "black" }} />
+            </button>
+          </Header__Right>
+        </Header__Wrapper>
+      </Header>{" "}
+      {showSearch ? <SearchBar toggle={toggle} /> : null}
     </>
   );
 };

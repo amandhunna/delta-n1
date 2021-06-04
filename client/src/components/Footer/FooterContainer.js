@@ -2,27 +2,24 @@ import React from 'react';
 import { Facebook, Instagram, Youtube } from 'react-bootstrap-icons';
 import './footer.css';
 
-
-
 function FooterContainer() {
     return (
         <div className="page-width">
             <footer className="footer">
                 <ul className="footer-nav">
                     <li className="nav-item">
-                    <h2 className="nav-title">Media</h2>
+                    <h2 className="nav-title">Our Pages</h2>
 
                     <ul className="nav-ul">
                         <li>
-                        <a href="#sample">Online</a>
+                        <a href="/">Home</a>
+                        </li>
+                        <li>
+                        <a href="/cart">Cart</a>
                         </li>
 
                         <li>
-                        <a href="#sample">Print</a>
-                        </li>
-                            
-                        <li>
-                        <a href="#sample">Alternative Ads</a>
+                        <a href="/wishlist">Wishlist</a>
                         </li>
                     </ul>
                     </li>
@@ -32,15 +29,15 @@ function FooterContainer() {
 
                     <ul className="nav-ul">
                         <li>
-                        <a href="#sample">Online</a>
+                        <a href="https://www.youtube.com/" target="_blank">Youtube</a>
                         </li>
 
                         <li>
-                        <a href="#sample">Print</a>
+                        <a href="https://www.instagram.com/" target="_blank">Instagram</a>
                         </li>
                             
                         <li>
-                        <a href="#sample">Alternative Ads</a>
+                        <a href="https://www.facebook.com/" target="_blank">Facebook</a>
                         </li>
                     </ul>
                     </li>
@@ -50,21 +47,21 @@ function FooterContainer() {
                     
                     <ul className="nav-ul">
                         <li>
-                        <a href="#sample">Privacy Policy</a>
+                        <a href="/disclaimer">Disclaimer</a>
                         </li>
                         
                         <li>
-                        <a href="#sample">Terms of Use</a>
+                        <a href="/termsAndConditions">Terms And Conditions</a>
                         </li>
                         
                         <li>
-                        <a href="#sample">Sitemap</a>
+                        <a href="/privacyPolicy">Privacy Policy</a>
                         </li>
                     </ul>
                     </li>
                 </ul>
                 <div className="footer-addr">
-                    <h1 className="footer-logo">Something</h1>
+                    <h1 className="footer-logo">Little Tags</h1>
                         
                     <h2>Contact</h2>
                     
@@ -81,7 +78,13 @@ function FooterContainer() {
                     <p>&copy; 2021 Something. All rights reserved.</p>
                     
                     <div className="legal-links">
-                    <span>Made with <span className="heart">♥</span> by Vatsal, Ajinkya and Amanjot</span>
+                    <span>Made with 
+                        <span className="heart">&nbsp;♥&nbsp;</span> 
+                       by&nbsp;
+                        <a className='devInfo' target="_blank" href="https://github.com/ajinkyabodade" >Vatsal</a>, &nbsp;
+                        <a className='devInfo' target="_blank" href="https://github.com/Vatsal272120" >Ajinkya </a>&nbsp;and &nbsp;
+                        <a className='devInfo' target="_blank" href="https://github.com/amandhunna" >Amanjot Singh</a>
+                    </span>
                     </div>
                 </div>
             </footer>

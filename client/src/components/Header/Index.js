@@ -6,7 +6,6 @@ import styled from "styled-components";
 import { Lock } from "@styled-icons/material";
 import PersonIcon from "@material-ui/icons/Person";
 import MenuIcon from "@material-ui/icons/Menu";
-import { motion } from "framer-motion";
 
 import {
   HeaderWrapper,
@@ -23,7 +22,7 @@ import { Link } from "react-router-dom";
 
 import { useStateValue } from "./../../context/StateProvider";
 import SideDrawer from "./../SideDrawer/Index";
-import SearchBar from "./../SearchBar/Index";
+import SearchMobile from "./../SearchBar/SearchMobile";
 
 const Header = () => {
   const [{ user }, dispatch] = useStateValue();
@@ -44,11 +43,7 @@ const Header = () => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.6 }}>
+    <>
       <HeaderWrapper>
         <HeaderLeft>
           <MenuIcon
@@ -69,8 +64,12 @@ const Header = () => {
           </Link>
         </HeaderMid>
         <HeaderRight>
-          <Link to={!user ? "/account/login" : "/account"}>
-            <User className='icon' style={{ color: "black" }} />
+          <Link to={!user ? "/login" : "/account"}>
+            <User
+              onClick={() => window.location.reload()}
+              className='icon'
+              style={{ color: "black" }}
+            />
           </Link>
 
           <Link>
@@ -81,9 +80,9 @@ const Header = () => {
             <Cart style={{ color: "black" }} />
           </Link>
         </HeaderRight>
-        {showSearch ? <SearchBar /> : null}
+        {showSearch ? <SearchMobile toggle={toggle} /> : null}
       </HeaderWrapper>{" "}
-    </motion.div>
+    </>
   );
 };
 

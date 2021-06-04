@@ -4,7 +4,7 @@ import AddIcon from "@material-ui/icons/Add";
 
 import MenuList from "./../MenuList/Index";
 
-const SideDrawerOptions = ({ name, urlMen, urlWomen }) => {
+const SideDrawerOptions = ({ name, urlMen, urlWomen, toggleSiderBar }) => {
   const [showList, setshowList] = useState(false);
 
   const openList = () => {
@@ -19,7 +19,13 @@ const SideDrawerOptions = ({ name, urlMen, urlWomen }) => {
           <AddIcon style={{ fontSize: 80 }} />
         </span>
       </MenuButton>
-      {showList ? <MenuList urlMen={urlMen} urlWomen={urlWomen} /> : null}
+      {showList ? (
+        <MenuList
+          urlMen={urlMen}
+          urlWomen={urlWomen}
+          toggleSiderBar={toggleSiderBar}
+        />
+      ) : null}
     </Options>
   );
 };

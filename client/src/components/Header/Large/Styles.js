@@ -4,77 +4,95 @@ import PersonIcon from "@material-ui/icons/Person";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
-export const HeaderWrapper = styled.div`
-  margin-left: 35px;
-  margin-top: 15px;
-  margin-right: 35px;
+export const Header = styled.div`
   background: white;
   color: #5c5c5c;
-  height: 50px;
+  height: 55px;
 
   transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   display: block;
   box-sizing: border-box !important;
   -webkit-font-smoothing: antialiased;
-  --window-height: 947px;
-  --announcement-bar-height: 40px;
-  --header-height: 123px;
-  --header-is-not-transparent: 1;
-`;
-
-export const HeaderTop = styled.div`
-  display: flex;
-  margin-top: 10px;
-  margin-bottom: 10px;
-`;
-
-export const HeaderLeft = styled.div`
-  flex: 0.6;
-
-  align-items: center;
-
-  .header__Logo {
-    margin-right: 0px;
-    margin-left: 70%;
-  }
-  .header__Logo__Image {
-    margin: 0 auto;
-    transition: opacity 0.3s ease-in-out;
-    display: block;
-    height: auto;
-    border-style: none;
-    vertical-align: top;
-    width: 120px;
-    @media screen and (min-width: 641px) {
-      max-width: 100%;
-    }
-  }
-  @media screen and (min-width: 1240px) {
-    margin-bottom: 40px;
-  }
-
-  @media screen and (min-width: 1240px) {
-    margin-bottom: 40px;
-  }
-`;
-
-export const HeaderRight = styled.div`
-  justify-content: flex-end;
-  flex: 0.4;
-  align-items: center;
-  display: flex;
-  box-sizing: border-box !important;
-  -webkit-font-smoothing: antialiased;
   font-family: "Century Gothic", sans-serif;
   font-weight: 400;
   font-style: normal;
-  @media screen and (min-width: 1240px) {
-    margin-bottom: 40px;
+  font-size: 13px;
+  line-height: 1.65;
+`;
+
+export const Header__Wrapper = styled.div`
+  padding-bottom: 24px;
+  padding: 18px 50px;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const Header__left = styled.div`
+  margin-bottom: 40px;
+  flex: 1 0 0;
+  align-items: center;
+  display: flex;
+`;
+
+export const Header__Mid = styled.div`
+  margin-bottom: -10px;
+  display: flex;
+
+  .header__logo {
+    margin-bottom: 0;
+    position: relative;
+    margin-top: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    display: block;
+  }
+
+  .header__logo__image {
+    max-width: 100%;
+    margin: 0 auto;
+    transition: opacity 0.3s ease-in-out;
+    isplay: block;
+    height: auto;
+    border-style: none;
+    vertical-align: top;
   }
 `;
 
-export const HeaderBottom = styled.div`
-  margin-top: 40px;
+export const Header__Right = styled.div`
+  margin-bottom: 00px;
+  justify-content: flex-end;
+  flex: 1 0 0;
+  align-items: center;
+  display: flex;
+
+  .MuiSvgIcon-root {
+    display: inline-block;
+    line-height: 1;
+    transition: color 0.2s ease-in-out;
+    position: relative;
+    background: transparent;
+    cursor: pointer;
+    height: 23px;
+    width: 19px;
+    fill: currentColor;
+    vertical-align: middle;
+    stroke-width: 1px;
+    background: none;
+    pointer-events: none;
+  }
+
+  .btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
 `;
 
 export const User = styled(PersonIcon)`

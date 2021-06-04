@@ -1,29 +1,129 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import CartList from './CartList';
 import CartCheckout from './CartCheckout';
-import Footer from './../../components/Footer';
 import emptyCartImg from './emptyCart.svg';
+import { db } from './../../config/firebaseConfig'
+import { useStateValue } from './../../context/StateProvider';
+import SkeletonLoader from './../../components/Skeleton';
+import noUser from './noUser.svg';
 import './cart.css';
 
-const product = {
-    src: 'https://cdn.shopify.com/s/files/1/0082/5091/6915/products/1_804dccb4-1357-427e-95c5-60ba9325f8a8_250x.jpg?v=1617960591',
-    productDetail: "/url to product page ",
-    name: 'German Silver',
-    price: '20',
-    currency: 'in',
-    alt: 'alt',
-    quantity: 1,
-
-};
-
-const list = Array(2).fill(product);
-function Cart(props) {
-    const [productList, setProductList] = useState(list);
+function Cart() {
+    const [productList, setProductList] = useState([]);
+    const [cartId, setCartId] = useState('');
+    const [{ user:currentUser }] = useStateValue() || [{}];
+    const [ componentState, setComponentState] = useState('loading');
     const addonProps = { 
-        productList, setProductList
+        productList, setProductList,setComponentState
     }
 
-    const emptyCart = !productList.length; 
+    const emptyCart = !productList.length;
+
+    useEffect(() => {
+        async function updateCart() {
+            if(componentState === 'update') {
+                try {
+                    const  productIds =  [];
+                    const productQuantity = [];
+                    productList.forEach((item) => {
+                        productIds.push(item.productDetail);
+                        productQuantity.push(item.quantity);
+                    });    
+
+                    await db.collection('Orders').doc(cartId).set({ productIds, productQuantity }, { merge: true } );
+                    setComponentState('updated');
+                } catch (error) {
+                    console.error("error in cart update:: ", error);
+                    setComponentState('error');
+                }
+            }
+        }
+        updateCart();
+    }, [productList]);
+
+    useEffect(() =>{
+        async function getCartList() {
+            if(!db) {
+                console.log('db not found', db)
+                setComponentState('error')
+                return;
+            }
+
+            
+            try {
+                const currentUserId =currentUser?.id;
+                if(!currentUserId) {
+                    setComponentState('noUser');
+                    return;
+                }
+
+                const activeOrder = `CART_${currentUserId}`;
+                const cartListRaw = await db.collection("Orders")
+                .where("status_userId", "==", activeOrder).get();
+                console.log("activeOrder",activeOrder )
+                const cartList = [];
+                cartListRaw.forEach((doc) => {
+                    cartList.push(doc.data());
+                    setCartId(doc.id)
+                });
+
+                if(!cartList.length) {
+                    setComponentState('noData')
+                    return
+                }
+                const { productIds, productQuantity } = cartList[0];
+
+                const cartProductListRaw = await Promise.all(productIds
+                    .map(item => db.collection('Products').doc(item).get()));
+
+
+                const productList = cartProductListRaw.map(item => item.data());
+                    const cartProductList = []
+                productList.forEach((data, index = 0) => {
+                    console.log("--data--", data)
+                    const object = {
+                        src: data.images[0],
+                        productDetail: productIds[0],
+                        inStock: data.inStock[0],
+                        name: data.name,
+                        price:data.price[0],
+                        currency: 'in',
+                        alt: data.name,
+                        quantity: productQuantity[index],
+                    }
+                    // console.log("cardProduct", cartProductList);
+                    // console.log("object", object);
+                    cartProductList.push(object); 
+    
+                });
+                setProductList(cartProductList);
+                setComponentState('fetched')
+            } catch (error) {
+                setComponentState('error')
+                console.error("error in cart list fetch :: ",error);
+            }
+        }
+        getCartList();
+
+    },[])
+
+    if(componentState === 'loading') {
+        return <SkeletonLoader />
+    }
+
+    if(componentState === 'error') {
+        return <div className='center'>Something went wrong.</div>
+    }
+
+    if(componentState === 'noUser') {
+        return <>
+            <div className='center wishlist-empty-list '>
+                <span>Please login to view your Cart</span>
+                <img src={noUser} alt='empty list' className='wishlist-empty-img'/>
+            </div>
+        
+        </>
+    }
     
     return (
             <>
@@ -44,9 +144,28 @@ function Cart(props) {
                 </div>
             </div>
             </>}
-            <Footer />
             </>
     );
 }
 
 export default Cart;
+
+
+/*     async function onClickWishlist(e) {
+        e.preventDefault();
+        try {
+
+            const newValue = !isWishlist;
+            console.warn("HARD CODED CURRENT USER ID");
+            const currentUserId = currentUser.id; //'j54EipobSWRnDqSfLMmcIpJ1Z3E2'; 
+            const wishlist = currentUser.wishlist; 
+            const newWishlist = [ ...[...[].concat(wishlist)], productId];
+
+            const addResponse = await db.collection('Users').doc(currentUserId).set({ wishlist: newWishlist}, { merge: true } );
+            console.log("---", addResponse);
+            setIsWishlist(newValue);
+        } catch (error) {
+            console.error("error in wishlist:: ", error);
+            setComponentState('error');
+        }
+    } */

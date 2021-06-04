@@ -24,19 +24,18 @@ import EmailIcon from "@material-ui/icons/Email";
 import { Link, useHistory } from "react-router-dom";
 
 import SideDrawerOptions from "./Options/Index";
-
-import { motion } from "framer-motion";
+import { useStateValue } from "../../context/StateProvider";
 
 const SideDrawer = ({ toggleSiderBar, showSiderBar }) => {
+  const [{ user }] = useStateValue();
+
   const history = useHistory();
 
-  const redirect = () => history.push("/account");
+  const redirect = () => {
+    !user ? history.push("/login") : history.push("/account");
+  };
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 2 }}>
+    <>
       <SideDrawerWrapper>
         <DrawerHeader>
           <CloseIcon onClick={toggleSiderBar} />
@@ -49,21 +48,25 @@ const SideDrawer = ({ toggleSiderBar, showSiderBar }) => {
                 name='Shop'
                 urlMen='/shop/all/men'
                 urlWomen='/shop/all/women'
+                toggleSiderBar={toggleSiderBar}
               />
               <SideDrawerOptions
                 name='New Arrivals'
-                urlMen='/shop/newarrivals/men'
-                urlWomen='/shop/newarrivals/women'
+                urlMen='/newarrivals/men'
+                urlWomen='/newarrivals/women'
+                toggleSiderBar={toggleSiderBar}
               />
               <SideDrawerOptions
                 name='Collections'
-                urlMen='/shop/collections/men'
-                urlWomen='/shop/collections/women'
+                urlMen='/collections/men'
+                urlWomen='/collections/women'
+                toggleSiderBar={toggleSiderBar}
               />
               <SideDrawerOptions
                 name='BestSellers'
-                urlMen='/shop/bestsellers/men'
-                urlWomen='/shop/bestsellers/women'
+                urlMen='/bestsellers/men'
+                urlWomen='/bestsellers/women'
+                toggleSiderBar={toggleSiderBar}
               />
             </DrawerMenu_Primary>
             <DrawerMenu_Secondary>
@@ -79,7 +82,7 @@ const SideDrawer = ({ toggleSiderBar, showSiderBar }) => {
           </DrawerContainer>
         </DrawerMain>
       </SideDrawerWrapper>
-    </motion.div>
+    </>
   );
 };
 

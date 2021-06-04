@@ -9,6 +9,7 @@ import MegaMenu from "./MegaMenu/Index";
 import DropDown from "./DropDown/Index";
 
 const Navbar = () => {
+  const history = useHistory();
   const node = useRef();
 
   const [megaMenu, setMegaMenu] = useState(false);
@@ -37,6 +38,7 @@ const Navbar = () => {
   }, []);
 
   const dropdown = () => {
+    history.push("/");
     setMegaMenu(!megaMenu);
     setshowNewArrivals(false);
     setshowCollections(false);
@@ -72,9 +74,6 @@ const Navbar = () => {
             Shop
           </p>
           <span className='linkSpacer'></span>
-          {megaMenu ? (
-            <MegaMenu dropdown={dropdown} urlMen={`/men`} urlWomen={"/women"} />
-          ) : null}
         </Link>
       </ListItem>
       <ListItem>
@@ -85,6 +84,9 @@ const Navbar = () => {
           <span className='linkSpacer'></span>
           {showNewArrivals ? (
             <MegaMenu
+              detailOne={"Tops"}
+              detailTwo={"Bottoms"}
+              detailThree={"Accessories"}
               newArrivals={newArrivals}
               urlMen={`/new/men`}
               urlWomen={"/new/women"}
@@ -100,6 +102,9 @@ const Navbar = () => {
           <span className='linkSpacer'></span>
           {showCollections ? (
             <MegaMenu
+              detailOne={"Linen"}
+              detailTwo={"Comfy"}
+              detailThree={"Denim"}
               collections={collections}
               urlMen={`/collections/men`}
               urlWomen={"/collections/women"}
@@ -115,6 +120,9 @@ const Navbar = () => {
           <span className='linkSpacer'></span>
           {showBestSellers ? (
             <MegaMenu
+              detailOne={"Tops"}
+              detailTwo={"Bottoms"}
+              detailThree={"Accessories"}
               bestsellers={bestsellers}
               urlMen={`/bestsellers/men`}
               urlWomen={"/bestsellers/women"}

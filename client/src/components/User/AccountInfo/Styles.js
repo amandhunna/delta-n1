@@ -27,11 +27,12 @@ export const PageHeader = styled.div`
     font-weight: 400;
     font-style: normal;
     transition: color 0.2s ease-in-out;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     background-color: transparent;
     text-decoration: none;
     line-height: 1.65;
+    font-size: 1rem;
     cursor: pointer;
 
     @media screen and (min-width: 641px) {

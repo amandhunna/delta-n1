@@ -3,13 +3,17 @@
 # dependencies
 /node_modules
 /.pnp
-.pnp.js
+.pnp.js 
+public/env.js
 
 # testing
 /coverage
 
 # production
 /build
+
+# Api keys and config info
+
 
 # misc
 .DS_Store
@@ -18,6 +22,9 @@
 .env.test.local
 .env.production.local
 
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+

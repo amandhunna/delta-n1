@@ -11,12 +11,18 @@ import { useHistory } from "react-router-dom";
 
 import AddIcon from "@material-ui/icons/Add";
 
-const MenuList = ({ urlMen, urlWomen }) => {
+const MenuList = ({ urlMen, urlWomen, toggleSiderBar }) => {
   const history = useHistory();
 
-  const redirectToMen = () => history.push(urlMen);
+  const redirectToMen = () => {
+    history.push(urlMen);
+    toggleSiderBar();
+  };
 
-  const redirectToWomen = () => history.push(urlWomen);
+  const redirectToWomen = () => {
+    history.push(urlWomen);
+    toggleSiderBar();
+  };
 
   return (
     <Collapsible__Inner>

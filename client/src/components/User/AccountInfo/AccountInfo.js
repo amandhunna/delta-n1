@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   MainWrapper,
   Container,
@@ -15,18 +15,32 @@ import {
 
 import { useStateValue } from "../../../context/StateProvider";
 
-import { auth } from "../../../config/firebaseConfig";
+import { auth, db } from "../../../config/firebaseConfig";
 
 import { Link, useHistory } from "react-router-dom";
+import Order from "./../../Misc/CheckoutMisc/Order";
 
 const AccountInfo = () => {
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user, cart }, dispatch] = useStateValue();
+
   const history = useHistory();
+
+  const [address, setaddress] = useState([]);
+
+  useEffect(() => {
+    let docRef = db.collection("Users").doc(user?.uid);
+    console.log(docRef);
+
+    docRef.onSnapshot((snapshot) => setaddress(snapshot.data()));
+  }, [address]);
+
+  console.log(address, "address");
 
   const logout = () => {
     auth.signOut();
     history.push("/");
   };
+
   return (
     <MainWrapper>
       <Container>
@@ -37,7 +51,9 @@ const AccountInfo = () => {
         </PageHeader>
         <PageHeaderSection>
           <h1 className='section__Heading'>My account</h1>
-          <p className='section__Description'>Welcome back {user?.firstName}</p>
+          <p className='section__Description'>
+            Welcome back, {user?.displayName}
+          </p>
         </PageHeaderSection>
         <SectionDetails>
           <SectionOne>
@@ -53,15 +69,32 @@ const AccountInfo = () => {
 
           <SectionTwo>
             <SectionOneDetails>
-              <h2 className='sectionDetails__orders'>No addresses</h2>
+              <h2 className='sectionDetails__orders'>Primary Address</h2>
               <SectionOneDetailsContent>
                 <p className='order__details'>
-                  No addresses are currently saved
+                  <span className='one'>
+                    {address?.firstName} {address?.lastName}
+                  </span>
+                  <br />
+                  {address?.address1}
+                  <br />
+                  {address?.address2}
+                  <br />
+                  {address?.city}
+                  <br />
+                  {address?.addressState}
+                  {address?.zip}
                 </p>
                 <SectionDetailsContentButton>
-                  <Link to='/account/addresses'>
-                    <AddressButton> Manage Address</AddressButton>
-                  </Link>
+                  {address?.firstName ? (
+                    <Link to='/account/addresses'>
+                      <AddressButton> Edit Address</AddressButton>
+                    </Link>
+                  ) : (
+                    <Link to='/account/addresses'>
+                      <AddressButton> Manage Address</AddressButton>
+                    </Link>
+                  )}
                 </SectionDetailsContentButton>
               </SectionOneDetailsContent>
             </SectionOneDetails>

@@ -16,14 +16,12 @@ import {
 
 import { auth } from "../../../config/firebaseConfig";
 
-import { motion } from "framer-motion";
-
 const Recover = () => {
   const history = useHistory();
 
   const [email, setEmail] = useState("");
 
-  const redirectToLoginPage = () => history.push("/account/login");
+  const redirectToLoginPage = () => history.push("/login");
 
   const recoverPassword = (e) => {
     e.preventDefault();
@@ -33,7 +31,7 @@ const Recover = () => {
       .then((response) => {
         console.log(response);
         auth.signOut();
-        history.push("/account/login");
+        history.push("/login");
       })
       .catch((e) => alert(e.message));
 
@@ -41,11 +39,7 @@ const Recover = () => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 2 }}>
+    <>
       <LoginWrapper>
         <LoginSection>
           <LoginContainer>
@@ -85,7 +79,7 @@ const Recover = () => {
           </LoginContainer>
         </LoginSection>
       </LoginWrapper>
-    </motion.div>
+    </>
   );
 };
 

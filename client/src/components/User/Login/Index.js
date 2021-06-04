@@ -17,8 +17,7 @@ import { useHistory, Link } from "react-router-dom";
 import { useStateValue } from "../../../context/StateProvider";
 
 import { auth, provider, facebookAuth } from "../../../config/firebaseConfig";
-
-import { motion } from "framer-motion";
+console.log("----facbookAuth---", facebookAuth)
 
 const Login = () => {
   const [{ user }, dispatch] = useStateValue();
@@ -28,66 +27,63 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   // email and password auth
+
   const signIn = (e) => {
     e.preventDefault();
-    try {
 
-    const userCredential = auth.signInWithEmailAndPassword(email, password);
-    if (userCredential) {
-      dispatch({
-        type: "SET_USER",
-        user: userCredential,
-        });
-      history.push("/");
-      }
-    }
-    catch(error) {
-      console.error("error in the basic sign-in ::", error);
-      alert(error.message);
-    }
-    finally {
-      setEmail("");
-      setPassword("");
-      history.push("/");
-    }
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        if (userCredential) {
+          dispatch({
+            type: "SET_USER",
+            user: userCredential,
+          });
+          history.push("/");
+        }
+      })
+      .catch((e) => alert(e.message));
+
+    setEmail("");
+    setPassword("");
+
+    history.push("/");
   };
 
   // facebook authentication
-  const facebookAuthentication = async (e) => {
+
+  const facebookAuth = (e) => {
     e.preventDefault();
-    try {
-      const userCredential = await auth.signInWithPopup(facebookAuth)
-        console.log(" facebook user", userCredential);
-    }
-    catch(error) {
-      console.error("error in facebook signup:: ", error);
-      alert(error);
-    } finally {
-      history.push("/");
-    }
+
+    auth
+      .signInWithPopup(facebookAuth)
+      .then((result) => {
+        console.log(result, " facebook user");
+      })
+      .catch((e) => alert(e));
+
+    history.push("/");
   };
 
   // googleAuthentication
-  const googleAuthentication = async (e) => {
+  const googleAuth = (e) => {
     e.preventDefault();
-    try {
-      const userCredential = await auth.signInWithPopup(provider);
-      dispatch({ type: "SET_USER", user: userCredential, })
-    } catch (error) {
-        console.error("error in google sign-in: ", error) 
-      alert(e.message) 
-    } finally {
-      history.push("/");
-    }
 
+    auth
+      .signInWithPopup(provider)
+      .then((result) =>
+        dispatch({
+          type: "SET_USER",
+          user: result,
+        })
+      )
+      .catch((e) => alert(e.message));
+
+    history.push("/");
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.6 }}>
+    <>
       <LoginWrapper>
         <LoginSection>
           <LoginContainer>
@@ -142,14 +138,14 @@ const Login = () => {
                   <span className='text'></span>
                 </LoginHint>
                 <LoginSocials>
-                  <SocialButtons onClick={facebookAuthentication}>
+                  <SocialButtons onClick={facebookAuth}>
                     <img
                       className='facebookLogo'
                       src='https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512'
                       alt='facebook'
                     />
                   </SocialButtons>
-                  <SocialButtons onClick={googleAuthentication}>
+                  <SocialButtons onClick={googleAuth}>
                     <img
                       className='googleLogo'
                       src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png'
@@ -162,7 +158,7 @@ const Login = () => {
           </LoginContainer>
         </LoginSection>
       </LoginWrapper>{" "}
-    </motion.div>
+    </>
   );
 };
 

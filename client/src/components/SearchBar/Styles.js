@@ -1,48 +1,42 @@
 import styled from "styled-components";
-import { Link as LinkR } from "react-router-dom";
 
-export const SearchBarWrapper = styled.div`
-  position: absolute;
-  margin-top: 70px;
-  --header-height: 77px;
-  width: 100%;
-  overflow: hidden;
-  transition: 0.2s ease-in-out;
-  box-shadow: 0 -1px #e7e7e7 inset;
+export const Search = styled.div`
+  pointer-events: auto;
+  display: flex;
   transform: translateY(0);
-  z-index: 1000;
-`;
-
-export const SearchInner = styled.div`
-  @media screen and (min-width: 641px) {
-    .SeachInner {
-      padding: 28px 50px;
-    }
-  }
-
-  max-height: calc(100vh - var(--header-height) - 88px);
-  overflow: auto;
+  display: block;
+  position: absolute;
+  background: white;
+  margin-top: 77px;
+  transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out,
+    visibility 0.15s ease-in-out;
+  z-index: -1;
+  line-height: 1.65;
   font-family: "Century Gothic", sans-serif;
   font-weight: 400;
   font-style: normal;
   color: #5c5c5c;
-  background: white;
-  line-height: 1.65;
+  z-index: 100;
 `;
 
-export const Search_SearchBar = styled.div`
+export const Search__Inner = styled.div`
+  padding: 28px 50px;
+  max-height: calc(100vh - 123px - 88px);
+  overflow: auto;
+  pointer-events: auto;
+`;
+
+export const Search__SearchBar = styled.div`
   display: flex;
+  background: red;
   align-items: center;
 `;
 
-export const SearchForm = styled.form`
+export const Search__Form = styled.form`
   display: flex;
   align-items: center;
-  justify-content: center;
   flex: 1 0 auto;
-  margin-top: 1em;
-  padding: 25px;
-  border-bottom: 1px solid #e7e7e7;
+  margin-top: 0em;
 
   .input {
     margin-left: 25px;
@@ -52,7 +46,6 @@ export const SearchForm = styled.form`
     background: none;
     width: 100%;
     font-family: "Century Gothic", sans-serif;
-
     font-style: normal;
     color: #5c5c5c;
     background: white;
@@ -74,7 +67,6 @@ export const SearchForm = styled.form`
     display: inline-block;
     text-align: start;
     cursor: text;
-
     .&:focus {
       outline: none;
     }
@@ -82,16 +74,72 @@ export const SearchForm = styled.form`
 `;
 
 export const SearchIcons = styled.div`
-cursor : pointer;
+  cursor: pointer;
+  margin-right: 20px;
+  margin-left: 25px;
+`;
 
+export const Search_Results = styled.div`
+  display: block;
+  justify-content: center;
+  margin-top: 70px;
+  margin-bottom: 48px;
+`;
 
-.MuiSvgIcon {
-  @ media screen and (min-width: 641px) {
-    margin-right:20px;
-    margin-left : 25px
+export const Search_Results_Layout = styled.div`
+  display: flex;
+
+  margin-left: 40vw;
+  margin-right: 50vw;
+
+  justify-content: center;
+  /*  flex-wrap: nowrap; */
+`;
+
+export const Search_Results_Segments = styled.div`
+  display: block;
+
+  justify-content: center;
+
+  .image {
+    height: 31.25rem;
   }
-  
-  
-  
-}
+
+  .ProductItem__Info {
+    font-size: 11px;
+    margin-top: 20px;
+  }
+
+  .ProductItem__Title {
+    display: block;
+    margin-bottom: 4px;
+    font-family: Futura, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #5c5c5c;
+    transition: color 0.2s ease-in-out;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 0;
+    text-align: center;
+    white-space: normal;
+    font-size: 1rem;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+
+  .ProductItem__PriceList {
+    font-family: Futura, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #5c5c5c;
+    transition: color 0.2s ease-in-out;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    text-align: center;
+    white-space: normal;
+  }
 `;

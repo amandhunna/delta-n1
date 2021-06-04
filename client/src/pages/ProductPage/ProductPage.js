@@ -1,14 +1,11 @@
 import React from 'react';
 import Product from './Product';
-
-function ProductPage() {
+function ProductPage(props) {
     return (
             <>
-            {/* header */}
             <div>
-                <Product debug={true}/>
+                <Product {...props}/>
             </div>
-            {/* Footer */}
             </>
     );
 }
