@@ -1,15 +1,12 @@
 // inital state of the app.
 // inital state of the app.
-const userFields = [
-  'id',
-  'displayName',
-  'email',
-  'accessToken',
-  'idToken',
-];
+const userFields = ["id", "displayName", "email", "accessToken", "idToken"];
 
 export const initialState = {
-  user: userFields.reduce((acc, curr) => ({...acc, [curr]: localStorage.getItem(curr)}), {}),
+  user: userFields.reduce(
+    (acc, curr) => ({ ...acc, [curr]: localStorage.getItem(curr) }),
+    {}
+  ),
   term: null,
   product: [],
   results: [],
@@ -77,7 +74,7 @@ const reducer = (state, action) => {
         user: action.user,
       };
 
-    case actionTypes.SET_SEARCH_TERM:
+    case "SET_SEARCH_TERM":
       return {
         ...state,
         term: action.term,
@@ -94,12 +91,12 @@ const reducer = (state, action) => {
         ...state,
         product: [...state.product, action.item],
       };
-      
-      case "SET_BANNER":
-        return { 
-          ...state,
-          banner:action.banner
-        }
+
+    case "SET_BANNER":
+      return {
+        ...state,
+        banner: action.banner,
+      };
 
     default:
       return state;

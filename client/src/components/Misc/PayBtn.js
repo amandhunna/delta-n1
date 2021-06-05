@@ -14,14 +14,13 @@ const PayBtn = () => {
 
     const line_items = cart.map((item) => {
       return {
-        quantity: item.quantity,
+        quantity: 1,
         price_data: {
           currency: "INR",
           unit_amount: item.price * 100, // prices are in paise
           product_data: {
             name: item.title,
-            description: item.description,
-            images: [item.imageUrl],
+            images: [item.image],
           },
         },
       };
@@ -44,7 +43,7 @@ const PayBtn = () => {
     }
   };
 
-  return <Pay onClick={handleCheckout}>{`Pay ₹${cartTotal(cart)}`}</Pay>;
+  return <Pay onClick={handleCheckout}>{`Pay ${cartTotal(cart)}`}</Pay>;
 };
 
 export default PayBtn;

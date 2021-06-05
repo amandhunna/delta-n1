@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import uuid from "react-uuid";
+import Image from "../../../../../components/Misc/Image";
 
 const BestSellerTop = () => {
   const [tops, settops] = useState([
@@ -172,32 +173,12 @@ const BestSellerTop = () => {
         </HeaderContainer>
       </Header>
       {tops.map((top) => (
-        <Home>
-          <Image_Product>
-            <Image_Product_Wrapper>
-              <a href='' className='ProductItem__ImageWrapper'>
-                <div className='AspectRatio '>
-                  <img class='ProductItem__Image' src={top.image} />
-                </div>
-              </a>
-            </Image_Product_Wrapper>
-            <div class='ProductItem__Info'>
-              <h2 class='ProductItem__Title '>
-                <a href='' className='link'>
-                  {top.Title}
-                </a>
-              </h2>
-
-              <div class='ProductItem__PriceList '>
-                <span
-                  class='ProductItem__Price Price Text--subdued'
-                  data-money-convertible=''>
-                  <span class='money'>{top.price}</span>
-                </span>
-              </div>
-            </div>
-          </Image_Product>
-        </Home>
+        <Image
+          Title={top.Title}
+          price={top.price}
+          id={top.id}
+          image={top.image}
+        />
       ))}
     </>
   );

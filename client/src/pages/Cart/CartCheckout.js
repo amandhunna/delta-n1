@@ -1,6 +1,7 @@
 import React from 'react';
 import helper from './helper';
 import Button from './../../components/Button';
+import Payout from './../../components/Misc/PayBtn';
 function CartCheckout(props) {
 
     const { productList } = props;
@@ -18,7 +19,8 @@ function CartCheckout(props) {
             </div>
             <div className='cart-checkout-button'>
                 <div>
-                    <Button label="Checkout" onClick={() => {}}/>
+                <Payout />
+                    {/* <Button label="Checkout" onClick={() => {}}/> */}
                 </div>
             </div>
         </div>

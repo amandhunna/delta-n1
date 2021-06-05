@@ -10,6 +10,54 @@ export const data = [
     tags: "Tops",
   },
   {
+    Title: "Technical zip-up knitted polo shirt",
+    price: "3200",
+    Description: "",
+    image:
+      "https://st.mngbcn.com/rcs/pics/static/T8/fotos/S20/87015909_52_D3.jpg?ts=1615885510679&imwidth=252&imdensity=2",
+    id: uuid(),
+  },
+  {
+    Title: "Contrasting stripes cotton polo shirt",
+    price: "3200",
+    Description: "",
+    image:
+      "https://st.mngbcn.com/rcs/pics/static/T8/fotos/S20/87005912_49.jpg?ts=1614951944160&imwidth=252&imdensity=2",
+    id: uuid(),
+  },
+  {
+    Title: "Contrasting stripes cotton polo shirt",
+    price: "2255",
+    Description: "",
+    image:
+      "https://st.mngbcn.com/rcs/pics/static/T8/fotos/S20/87005912_69.jpg?ts=1613995504385&imwidth=252&imdensity=2",
+    id: uuid(),
+  },
+  {
+    Title: "Technical zip-up knitted polo shirt",
+    price: "2322",
+    Description: "",
+    image:
+      "https://st.mngbcn.com/rcs/pics/static/T8/fotos/S20/87015909_99.jpg?ts=1615884177965&imwidth=252&imdensity=2",
+    id: uuid(),
+  },
+  {
+    Title: "Bowling-neck polo shirt",
+    price: "1200",
+    Description: "",
+    image:
+      "https://st.mngbcn.com/rcs/pics/static/T8/fotos/S20/87077134_08.jpg?ts=1618837508735&imwidth=252&imdensity=2",
+    id: uuid(),
+  },
+  {
+    Title: "Technical cotton polo shirt",
+    price: "4500",
+    Description: "",
+    image:
+      "https://st.mngbcn.com/rcs/pics/static/T8/fotos/S20/87005914_06.jpg?ts=1614951944160&imwidth=252&imdensity=2",
+    id: uuid(),
+  },
+  {
     Title: "Mineral dyed joggers",
     price: "₹5,590",
     image:
