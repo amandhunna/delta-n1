@@ -81,9 +81,9 @@ function FooterContainer() {
                     <span>Made with 
                         <span className="heart">&nbsp;♥&nbsp;</span> 
                        by&nbsp;
-                        <a className='devInfo' target="_blank" href="https://github.com/ajinkyabodade" >Vatsal</a>, &nbsp;
-                        <a className='devInfo' target="_blank" href="https://github.com/Vatsal272120" >Ajinkya </a>&nbsp;and &nbsp;
-                        <a className='devInfo' target="_blank" href="https://github.com/amandhunna" >Amanjot Singh</a>
+                        <a className='devInfo' target="_blank" href="https://github.com/ajinkyabodade">Ajinkya</a>, &nbsp;
+                        <a className='devInfo' target="_blank" href="https://github.com/Vatsal272120">Vatsal</a>&nbsp;and &nbsp;
+                        <a className='devInfo' target="_blank" href="https://github.com/amandhunna">Amanjot Singh</a>
                     </span>
                     </div>
                 </div>
