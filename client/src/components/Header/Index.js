@@ -64,7 +64,7 @@ const Header = () => {
           </Link>
         </HeaderMid>
         <HeaderRight>
-          <Link to={!user ? "/login" : "/account"}>
+          <Link to={!user ? "/account/login" : "/account"}>
             <User
               onClick={() => window.location.reload()}
               className='icon'

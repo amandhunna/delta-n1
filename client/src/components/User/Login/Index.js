@@ -96,6 +96,15 @@ const Login = () => {
                     Please enter your email and password
                   </p>
                 </LoginFormHeader>
+                <LoginSocials>
+                  <SocialButtons onClick={googleAuth}>
+                    <img
+                      className='googleLogo'
+                      src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png'
+                      alt='facebook'
+                    />
+                  </SocialButtons>
+                </LoginSocials>
                 <LoginFormItem>
                   <input
                     type='email'
@@ -137,22 +146,6 @@ const Login = () => {
                 <LoginHint>
                   <span className='text'></span>
                 </LoginHint>
-                <LoginSocials>
-{/*                   <SocialButtons onClick={facebookAuth}>
-                    <img
-                      className='facebookLogo'
-                      src='https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512'
-                      alt='facebook'
-                    />
-                  </SocialButtons> */}
-                  <SocialButtons onClick={googleAuth}>
-                    <img
-                      className='googleLogo'
-                      src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png'
-                      alt='facebook'
-                    />
-                  </SocialButtons>
-                </LoginSocials>
               </LoginForm>
             </LoginPageContent>
           </LoginContainer>
