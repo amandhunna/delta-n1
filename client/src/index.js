@@ -1,10 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import reportWebVitals from "./reportWebVitals";
+import {Elements} from '@stripe/react-stripe-js';
+import { loadStripe } from "@stripe/stripe-js";
 import { StateProvider } from "./context/StateProvider";
 import reducer, { initialState } from "./context/reducer";
-const { REACT_APP_TEST_COMPONENTS } = process.env;
+import "./index.css";
+
+const { REACT_APP_TEST_COMPONENTS, REACT_APP_STRIPE_PUBLIC_KEY } = process.env;
+
+const stripePromise = loadStripe(REACT_APP_STRIPE_PUBLIC_KEY);
 
 if (REACT_APP_TEST_COMPONENTS) {
   import("./TestComponent")
@@ -13,14 +17,16 @@ if (REACT_APP_TEST_COMPONENTS) {
       ReactDOM.render(
         <React.StrictMode>
           <StateProvider initialState={initialState} reducer={reducer}>
-            <TestComponent />
+            <Elements stripe={stripePromise}>
+              <TestComponent />
+            </Elements>
           </StateProvider>
         </React.StrictMode>,
         document.getElementById("root")
       );
     })
     .catch((error) => {
-      console.error("error in test app: ", error);
+      console.error("error in the testComponent", error)
       ReactDOM.render(
         <div>Something went wrong in Test components</div>,
         document.getElementById("root")
@@ -33,20 +39,19 @@ if (REACT_APP_TEST_COMPONENTS) {
       ReactDOM.render(
         <React.StrictMode>
           <StateProvider initialState={initialState} reducer={reducer}>
-            <App />
+            <Elements stripe={stripePromise}>
+              <App />
+            </Elements>
           </StateProvider>
         </React.StrictMode>,
         document.getElementById("root")
       );
     })
     .catch((error) => {
-      console.error("error in main app: ", error)
+      console.error("error in the testComponent", error)
       ReactDOM.render(
         <div>Something went wrong in Main Application</div>,
         document.getElementById("root")
       );
     });
 }
-
-
-reportWebVitals();

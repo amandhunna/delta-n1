@@ -138,13 +138,13 @@ const Login = () => {
                   <span className='text'></span>
                 </LoginHint>
                 <LoginSocials>
-                  <SocialButtons onClick={facebookAuth}>
+{/*                   <SocialButtons onClick={facebookAuth}>
                     <img
                       className='facebookLogo'
                       src='https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512'
                       alt='facebook'
                     />
-                  </SocialButtons>
+                  </SocialButtons> */}
                   <SocialButtons onClick={googleAuth}>
                     <img
                       className='googleLogo'
