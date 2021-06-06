@@ -38,7 +38,7 @@ const HeaderLarge = () => {
     if (user) {
       history.push("/account");
     } else {
-      history.push("/login");
+      history.push("/account/login");
     }
   };
 
