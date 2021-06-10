@@ -1,0 +1,81 @@
+:root {
+  --primaryColor:#ff7675;
+  --greyColor:#939393;
+}
+
+.productContainer-main{
+  width: inherit;
+  height: inherit;
+  position: relative;
+}
+
+.productContainer-image{
+  cursor: pointer;
+  height: 100%;
+  background-size: cover;
+}
+.productContainer-imageMain{
+  cursor: pointer;
+  position: relative;
+  height: 88%;
+}
+
+.productContainer-title{
+  cursor: pointer;
+  font-size: 0.8em;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:black ;
+  padding-top: 0.8em;
+}
+
+.productContainer-price{
+  font-size: 0.8em;
+  text-align: center;
+  letter-spacing: 0.1em;
+  color:var(--greyColor) ;
+  padding-top: 0.8em;
+}
+
+
+
+.productContainer-button {
+  position: absolute;
+  width:100%;
+  left:0;
+  top: 50%;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.productContainer-button a {
+  width: 200px;
+  padding: 0.4em 0.5em;
+  text-align: center;
+  color: white;
+  border-radius: 2px;
+  z-index: 1;
+  background: var(--primaryColor);
+}
+
+.productContainer-imageMain:hover .productContainer-button {
+  opacity: 1;
+  z-index: 2;
+}
+
+.productContainer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.5s ease;
+}
+
+.productContainer-imageMain:hover .productContainer-overlay {
+  display: block;
+  background: rgba(0, 0, 0, .3);
+}

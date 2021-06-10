@@ -1,0 +1,60 @@
+/* Skeleton */
+@keyframes placeHolderShimmer {
+  0% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    background-position: -468px 0;
+  }
+  to {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    background-position: 468px 0;
+  }
+}
+
+.card-skeleton {
+  height: 20vw;
+  margin: 2em;
+}
+
+.card-skeleton-img {
+  width: 100%;
+  height: 120px;
+  background: #e6e6e6;
+  display: block;
+}
+
+.animated-background {
+  will-change: transform;
+  animation: placeHolderShimmer 1s linear infinite forwards;
+  -webkit-backface-visibility: hidden;
+  background: #e6e6e6;
+  background: linear-gradient(90deg, #eee 8%, #ddd 18%, #eee 33%);
+  background-size: 800px 104px;
+  height: 100%;
+  position: relative;
+}
+
+.skel-mask-container {
+  position: relative;
+}
+
+.skel-mask {
+  background: #fff;
+  position: absolute;
+  z-index: 200;
+}
+
+.skel-mask-1 {
+  width: 100%;
+  height: 15px;
+  top: 0;
+  left: 0;
+}
+
+.skel-mask-6 {
+  width: 100%;
+  height: 15px;
+  top: 95px;
+  right: 0;
+}
