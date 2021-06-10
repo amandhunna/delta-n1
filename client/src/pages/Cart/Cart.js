@@ -80,7 +80,6 @@ function Cart() {
                 const productList = cartProductListRaw.map(item => item.data());
                     const cartProductList = []
                 productList.forEach((data, index = 0) => {
-                    console.log("--data--", data)
                     const object = {
                         src: data.images[0],
                         productDetail: productIds[0],
@@ -149,23 +148,3 @@ function Cart() {
 }
 
 export default Cart;
-
-
-/*     async function onClickWishlist(e) {
-        e.preventDefault();
-        try {
-
-            const newValue = !isWishlist;
-            console.warn("HARD CODED CURRENT USER ID");
-            const currentUserId = currentUser.id; //'j54EipobSWRnDqSfLMmcIpJ1Z3E2'; 
-            const wishlist = currentUser.wishlist; 
-            const newWishlist = [ ...[...[].concat(wishlist)], productId];
-
-            const addResponse = await db.collection('Users').doc(currentUserId).set({ wishlist: newWishlist}, { merge: true } );
-            console.log("---", addResponse);
-            setIsWishlist(newValue);
-        } catch (error) {
-            console.error("error in wishlist:: ", error);
-            setComponentState('error');
-        }
-    } */

@@ -6,7 +6,7 @@ import { useStripe } from "@stripe/react-stripe-js";
 import { fetchFromAPI } from "../../helper/helper";
 
 const PayBtn = () => {
-  const [{ cart, user }] = useStateValue();
+  const [{ cart =[], user }] = useStateValue();
   const stripe = useStripe();
 
   const handleCheckout = async (e) => {
@@ -29,7 +29,7 @@ const PayBtn = () => {
     const response = await fetchFromAPI("create-checkout-session", {
       body: {
         line_items,
-        customer_email: user.email,
+        customer_email: user?.email,
       },
     });
 
