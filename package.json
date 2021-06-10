@@ -29,8 +29,8 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "dev": "env-cmd -f .env npm run start",
+    "react" : "react-scripts start",
+    "start": "env-cmd -f .env npm run start",
     "testTwo": "react-scripts test",
     "testComponent": "set REACT_APP_TEST_COMPONENTS=true && npm run dev",
     "build": "react-scripts build",
