@@ -24,7 +24,7 @@ function Header() {
 
   return (
     <header>
-        <div className="header-left"></div>
+        {/* <div className="header-left"></div> */}
         <div className="header-middle">
         <img
           src='https://cdn.shopify.com/s/files/1/0082/5091/6915/files/amrapali_logo_transpaper_bg_120x.png?v=1564667363'
