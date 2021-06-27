@@ -2,8 +2,12 @@
   height: 39vh;
   width: 18vw;
   display: flex;
+  margin: 2rem;
 }
 
 .search-page {
   display: flex;
+  justify-content: center;
+  width: 100vw;
+  flex-wrap: wrap;
 }

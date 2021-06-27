@@ -15,7 +15,8 @@ function ProductContainer(props) {
             <div className="productContainer-imageMain">
                 <div className="productContainer-image" style={{backgroundImage: `url(${product.src})`}}></div>
                 <div className="productContainer-button">
-                    <button onClick={() => history.push(`/product/${product.productId}`)}><Search/> View Product </button>
+                    {!product.outStock && <button onClick={() => history.push(`/product/${product.productId}`)}><Search/> View Product </button>}
+                    {product.outStock && <span className="product-outStock">Out of Stock </span>}
                 </div>
                 <div className="productContainer-overlay"></div>
             </div>
