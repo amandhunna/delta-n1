@@ -1,26 +1,15 @@
 import React, { useState, useEffect } from "react";
-
-import {
-  Search,
-  Search__Inner,
-  Search__SearchBar,
-  Search__Form,
-  Search_Results,
-  Search_Results_Layout,
-  Search_Results_Segments,
-} from "./Styles";
 import SearchIcon from "@material-ui/icons/Search";
 import { useHistory } from "react-router-dom";
 import { useStateValue } from "./../../context/StateProvider";
 import Fuse from "fuse.js";
-import { data } from "./../../Data/Info";
+import data from "./../../Data/Info";
 
 const SearchBar = ({ toggle }) => {
   const [{ term, results }, dispatch] = useStateValue();
   const [searchData, setSearchData] = useState(data);
 
   const [input, setInput] = useState("");
-  const history = useHistory();
 
   const searchItem = (query) => {
     if (!query) {
@@ -28,7 +17,7 @@ const SearchBar = ({ toggle }) => {
       return;
     }
     const fuse = new Fuse(data, {
-      keys: ["Title", "tags"],
+      keys: ["name", "tags"],
       threshold: 0.5,
     });
     const result = fuse.search(query);
@@ -65,10 +54,8 @@ const SearchBar = ({ toggle }) => {
   console.log(term);
 
   return (
-    <Search>
-      <Search__Inner>
-        <Search__SearchBar>
-          <Search__Form onSubmit={search}>
+    <>
+          <div onSubmit={search}>
             <input
               type='search'
               placeholder='Search for a keyword...'
@@ -80,32 +67,25 @@ const SearchBar = ({ toggle }) => {
                 searchItem(e.target.value);
               }}
             />
-          </Search__Form>
-        </Search__SearchBar>
-      </Search__Inner>
+          </div>
       {searchData.map((item) => (
-        <Search_Results>
-          <Search_Results_Layout>
-            <Search_Results_Segments>
-              <img
-                className='image'
-                src={item.image}
-                alt=''
-                onClick={productDetails}
-              />
-              <div class='ProductItem__Info'>
-                <h2 class='ProductItem__Title '>{item.Title}</h2>
-                <div class='ProductItem__PriceList  '>
-                  <span class='ProductItem__Price ' data-money-convertible=''>
-                    <span class='money'>{item.price}</span>
-                  </span>
-                </div>
-              </div>
-            </Search_Results_Segments>
-          </Search_Results_Layout>
-        </Search_Results>
-      ))}
-    </Search>
+        <React.Fragment key={item.productId}>
+          <img
+            className='image'
+            src={item.image}
+            alt=''
+            onClick={productDetails}
+          />
+          <div class='ProductItem__Info'>
+            <h2 class='ProductItem__Title '>{item.name}</h2>
+            <div class='ProductItem__PriceList  '>
+              <span class='ProductItem__Price ' data-money-convertible=''>
+                <span class='money'>{item.price}</span>
+              </span>
+            </div>
+          </div>
+        </React.Fragment>))}
+    </>
   );
 };
 

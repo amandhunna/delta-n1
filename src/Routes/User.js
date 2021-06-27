@@ -39,7 +39,7 @@ export const UserAddresses = (
     <Responsive displayIn={["Laptop"]}>
       <>
         {" "}
-        <HeaderLarge /> <Navbar />{" "}
+        <Header /> <Navbar />{" "}
       </>
     </Responsive>
 
@@ -63,7 +63,7 @@ export const UserAccount = (
     <Responsive displayIn={["Laptop"]}>
       <>
         {" "}
-        <HeaderLarge /> <Navbar />{" "}
+        <Header /> <Navbar />{" "}
       </>
     </Responsive>
 
@@ -87,7 +87,7 @@ export const RestorePassword = (
     <Responsive displayIn={["Laptop"]}>
       <>
         {" "}
-        <HeaderLarge /> <Navbar />{" "}
+        <Header /> <Navbar />{" "}
       </>
     </Responsive>
 
@@ -111,7 +111,7 @@ export const Register = (
     <Responsive displayIn={["Laptop"]}>
       <>
         {" "}
-        <HeaderLarge /> <Navbar />{" "}
+        <Header /> <Navbar />{" "}
       </>
     </Responsive>
 
