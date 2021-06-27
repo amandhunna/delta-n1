@@ -7,7 +7,7 @@ import { data } from "./../../Data/Info";
 import Fuse from "fuse.js";
 
 const SearchBar = ({ showSearch, toggle }) => {
-  const [{ term, results }, dispatch] = useStateValue();
+  const [{ term }, dispatch] = useStateValue();
   const [searchData, setSearchData] = useState(data);
 
   const [input, setInput] = useState("");
@@ -19,7 +19,7 @@ const SearchBar = ({ showSearch, toggle }) => {
       return;
     }
     const fuse = new Fuse(data, {
-      keys: ["Title"],
+      keys: ["name"],
     });
     const result = fuse.search(query);
     const finalResult = [];

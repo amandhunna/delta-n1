@@ -1,7 +1,7 @@
 import Navbar from "./components/Navbar/Index";
 import Header from "./components/Header";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {Route } from "react-router-dom";
 
 import { Responsive } from "./helper/Responsive/Responsive";
 

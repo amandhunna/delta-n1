@@ -3,6 +3,7 @@ import uuid from "react-uuid";
 import ProductContainer from './../../components/ProductContainer';
 import Skeleton from './../../components/Skeleton';
 import { db } from './../../config/firebaseConfig';
+import SearchBar from './../../components/SearchBar/Index'
 import './search.css';
 
 function Search() {
@@ -161,7 +162,7 @@ function Search() {
       productId: uuid(),
     },
   ].map(item => ({...item, outStock: true})));
-  const [ componentState, setComponentState ] = useState('loading');  
+  const [ componentState, setComponentState ] = useState('test')//('loading');  
 
 
 
@@ -195,10 +196,11 @@ function Search() {
             console.error("error in product show page:: ", error);
         }
     }
-   getProduct();
+  //getProduct();
 }, []);
 
 
+  return <Searchbar />;
 
   if(componentState === 'loading') {
     return <Skeleton />;
