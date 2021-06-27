@@ -63,7 +63,7 @@ function FooterContainer() {
                 <div className="footer-addr">
                     <h1 className="footer-logo">Little Tags</h1>
                         
-                    <h2>Contact</h2>
+                    <h2><a href="/contact">Contact</a></h2>
                     
                     <address>
                     5534 Somewhere In. The World 22193-10212<br />

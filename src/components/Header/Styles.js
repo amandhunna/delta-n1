@@ -1,9 +1,5 @@
+// shame
 import styled from "styled-components";
-import {
-  RiAccountCircleLine,
-  RiShoppingCartLine,
-  RiSearchLine,
-} from "react-icons/ri";
 
 import PersonIcon from "@material-ui/icons/Person";
 import SearchIcon from "@material-ui/icons/Search";

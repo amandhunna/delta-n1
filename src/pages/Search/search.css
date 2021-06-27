@@ -1,0 +1,9 @@
+.search-product {
+  height: 39vh;
+  width: 18vw;
+  display: flex;
+}
+
+.search-page {
+  display: flex;
+}

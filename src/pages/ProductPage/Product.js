@@ -90,7 +90,6 @@ function Product(props) {
                 sizes: [selectedSize],
             }
             await db.collection('Orders').doc().set({...newData}, { merge: true } );
-            // console.log("===",newData )
         }
         history.push('/cart');
     }

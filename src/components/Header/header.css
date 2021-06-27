@@ -1,0 +1,11 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid var(--secondary-color);
+  align-items: center;
+  margin-bottom: 1rem;
+}
+button.btn {
+  padding: 0 1rem;
+}

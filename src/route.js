@@ -12,7 +12,7 @@ import Disclaimer from './pages/Policies/Disclaim';
 import TermsAndConditions from './pages/Policies/TermsAndConditions';
 import PrivacyPolicy from './pages/Policies/PrivacyPolicies';
 import PageNotFound from './pages/404';
-// import Home from './pages/HomePage'
+import Search from './pages/Search';
 
 const routeComponents = [
     {
@@ -26,6 +26,10 @@ const routeComponents = [
     {
       route:'/product/:productId',
       component: ProductPage,
+    },
+    {
+      route:'/search',
+      component: Search,
     },
     {
     route :'/cart',

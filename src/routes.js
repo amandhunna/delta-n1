@@ -1,6 +1,5 @@
-import HeaderLarge from "./components/Header/Large/Index";
 import Navbar from "./components/Navbar/Index";
-import Header from "./components/Header/Index";
+import Header from "./components/Header";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -34,14 +33,14 @@ import BestSellerWomanBottoms from "./pages/Products/Women/Bottoms/Bestsellers/B
 
 export const NewArrivalsMenTop = (
   <Route path='/new/men/tops'>
-    <HeaderLarge /> <Navbar />
+    <Header /> <Navbar />
     <NewArrivalsTop />
   </Route>
 );
 
 export const NewArrivalsMenBottoms = (
   <Route path='/new/men/bottoms'>
-    <HeaderLarge /> <Navbar />
+    <Header /> <Navbar />
     <NewArrivalsBottoms />
   </Route>
 );
@@ -60,7 +59,7 @@ export const NewArrivalsMenMobile = (
 export const NewArrivalsWomenBottom = (
   <Route path='/new/women/bottoms'>
     <Responsive displayIn={["Laptop"]}>
-      <HeaderLarge />
+      <Header />
       <Navbar />
       <NewArrivalsWomanBottoms />
     </Responsive>
@@ -70,7 +69,7 @@ export const NewArrivalsWomenBottom = (
 export const NewArrivalsWomenTop = (
   <Route path='/new/women/tops'>
     <Responsive displayIn={["Laptop"]}>
-      <HeaderLarge />
+      <Header />
       <Navbar />
       <NewArrivalsWomanTop />
     </Responsive>
@@ -91,7 +90,7 @@ export const NewArrivalsWomenMobile = (
 export const CollectionMenTop = (
   <Route path='/collections/men/tops'>
     <Responsive displayIn={["Laptop"]}>
-      <HeaderLarge /> <Navbar />
+      <Header /> <Navbar />
       <CollectionsTop />
     </Responsive>
   </Route>
@@ -100,7 +99,7 @@ export const CollectionMenTop = (
 export const CollectionMenBottom = (
   <Route path='/collections/men/bottoms'>
     <Responsive displayIn={["Laptop"]}>
-      <HeaderLarge />
+      <Header />
       <Navbar />
       <CollectionBottoms />
     </Responsive>
@@ -121,7 +120,7 @@ export const CollectionsMenMobile = (
 export const CollectionsWomanTops = (
   <Route path='/collections/women/tops'>
     <Responsive displayIn={["Laptop"]}>
-      <HeaderLarge /> <Navbar />
+      <Header /> <Navbar />
       <CollectionWomanTop />
     </Responsive>
   </Route>
@@ -130,7 +129,7 @@ export const CollectionsWomanTops = (
 export const CollectionsWomanBottoms = (
   <Route path='/collections/women/bottoms'>
     <Responsive displayIn={["Laptop"]}>
-      <HeaderLarge /> <Navbar />
+      <Header /> <Navbar />
       <CollectionWomanBottoms />
     </Responsive>
   </Route>
@@ -150,7 +149,7 @@ export const CollectionWomanMobile = (
 export const BestSellersMenTops = (
   <Route path='/bestsellers/men/tops'>
     <Responsive displayIn={["Laptop"]}>
-      <HeaderLarge /> <Navbar />
+      <Header /> <Navbar />
       <BestSellerTop />
     </Responsive>
   </Route>
@@ -159,7 +158,7 @@ export const BestSellersMenTops = (
 export const BestSellersMenBottoms = (
   <Route path='/bestsellers/men/bottoms'>
     <Responsive displayIn={["Laptop"]}>
-      <HeaderLarge /> <Navbar />
+      <Header /> <Navbar />
       <BestSellerBottoms />
     </Responsive>
   </Route>
@@ -178,7 +177,7 @@ export const BestSellersMenMobile = (
 export const BestSellersWomenTops = (
   <Route path='/bestsellers/women/tops'>
     <Responsive displayIn={["Laptop"]}>
-      <HeaderLarge /> <Navbar />
+      <Header /> <Navbar />
       <BestSellerWomantop />
     </Responsive>
   </Route>
@@ -187,7 +186,7 @@ export const BestSellersWomenTops = (
 export const BestSellersWomanBottoms = (
   <Route path='/bestsellers/women/bottoms'>
     <Responsive displayIn={["Laptop"]}>
-      <HeaderLarge /> <Navbar />
+      <Header /> <Navbar />
       <BestSellerWomanBottoms />
     </Responsive>
   </Route>
@@ -207,7 +206,7 @@ export const Home = (
     <Responsive displayIn={["Laptop"]}>
       <>
         {" "}
-        <HeaderLarge /> <Navbar />{" "}
+        <Header /> <Navbar />{" "}
       </>
     </Responsive>
 

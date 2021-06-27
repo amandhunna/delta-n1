@@ -1,9 +1,8 @@
 import { Responsive } from "./../helper/Responsive/Responsive";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import HeaderLarge from "./../components/Header/Large/Index";
 import Navbar from "./../components/Navbar/Index";
 import AccountLogin from "./../pages/AccountLogin";
-import Header from "./../components/Header/Index";
+import Header from "./../components/Header";
 import Address from "./../components/User/AccountInfo/UserAddresses/Index";
 import AccountInfo from "./../components/User/AccountInfo/AccountInfo";
 import Recover from "./../components/User/RecoverPassword/Index";
@@ -16,7 +15,7 @@ export const Login = (
     <Responsive displayIn={["Laptop"]}>
       <>
         {" "}
-        <HeaderLarge /> <Navbar />{" "}
+        <Header /> <Navbar />{" "}
       </>
     </Responsive>
 

@@ -1,3 +1,4 @@
+/* 
 import { Responsive } from "./../helper/Responsive/Responsive";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -5,14 +6,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Final from "./../components/Misc/FinalInfo";
 import FinalMobile from "./../components/Misc/FinalInfoMobile";
-import HeaderLarge from "./../components/Header/Large/Index";
+//import HeaderLarge from "./../components/Header/Large/Index";
 import Navbar from "./../components/Navbar/Index";
 import Header from "./../components/Header/Index";
-import ProductDisplay from "./../components/ProductDisplay/Index";
 import ProductDisplayMobile from "./../components/ProductDisplay/Mobile/Index";
 import Contact from "./../components/Contact/Index";
 
-import SearchPage from "./../pages/SearchPage";
+// import SearchPage from "./../pages/SearchPage";
 
 export const FinalInfo = (
   <Route path='/final'>
@@ -41,7 +41,7 @@ export const Contacts = (
     <Responsive displayIn={["Laptop"]}>
       <>
         {" "}
-        <HeaderLarge /> <Navbar />{" "}
+     {/*    <HeaderLarge /> <Navbar />{" "} * /}
       </>
     </Responsive>
 
@@ -65,7 +65,7 @@ export const Search = (
     <Responsive displayIn={["Laptop"]}>
       <>
         <HeaderLarge /> <Navbar />
-        <SearchPage />
+{/ *         <SearchPage /> * /}
       </>
     </Responsive>
 
@@ -86,4 +86,4 @@ export const Search = (
       </>
     </Responsive>
   </Route>
-);
+); */

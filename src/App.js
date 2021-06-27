@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
-import { Responsive } from "./helper/Responsive/Responsive"//"./helper/Responsive";
 import { auth } from "./config/firebaseConfig";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useStateValue } from "./context/StateProvider";
 
 //components
-import HeaderLarge from "./components/Header/Large/Index";
-import Navbar from "./components/Navbar/Index";
-import Header from "./components/Header/Index";
+import Header from "./components/Header";
 import Footer from './components/Footer';
 import routeComponents from './route'; 
 import "./App.css";
@@ -51,36 +48,24 @@ function App() {
     })
   }
 
-  const loginBanner =   (<>          
-      <div>
-        <span>SOME GLOBAL INFO</span>
-      </div>
-    </>);
   
   return (
     <Router>
-        <Responsive displayIn={["Laptop"]}>
-            <HeaderLarge /> <Navbar />{" "}
-        </Responsive>
+            <Header /> {/* <Navbar /> */}
 
-        <Responsive displayIn={["Mobile"]}>
+{/*         <Responsive displayIn={["Mobile"]}>
             <Header />
         </Responsive>
 
         <Responsive displayIn={["Tablet"]}>
             <Header />
         </Responsive>
-        { banner?.show && (<>
-          <div className="center banner">
-            {banner?.message || loginBanner}
-            <button className="" onClick={onBannerCancel}>x</button>
-          </div>
-         </>) }
+ */} 
         <Switch>
           {routeComponents.map(item => {
             const Component = item.component;
             const { route:path } = item;
-            return <Route exact path={path}  key={path}  render={route => <Component route={route} />} />
+            return <Route exact path={path}  key={path}  render={route => <main><Component route={route} /></main>} />
             })
           }
         </Switch>
